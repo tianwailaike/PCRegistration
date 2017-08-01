@@ -1,0 +1,3 @@
+/home/ubuntu/lyc2017/pcp/icptest/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/lyc2017/pcp/icptest/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/lyc2017/pcp/icptest/build/CMakeFiles/icptest.dir
