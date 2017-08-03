@@ -11,7 +11,6 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "DEBUG"
   "DISABLE_PCAP"
   "DISABLE_PNG"
   "EIGEN_USE_NEW_STDVECTOR"
@@ -19,6 +18,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
   "FLANN_STATIC"
   "QT_CORE_LIB"
   "QT_GUI_LIB"
+  "QT_NO_DEBUG"
   "QT_WIDGETS_LIB"
   "qh_QHpointer"
   "vtkFiltersFlowPaths_AUTOINIT=1(vtkFiltersParallelFlowPaths)"

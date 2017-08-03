@@ -55,7 +55,7 @@ include CMakeFiles/icprefine_automoc.dir/progress.make
 
 CMakeFiles/icprefine_automoc:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic moc for target icprefine"
-	/usr/bin/cmake -E cmake_autogen /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/icprefine_automoc.dir/ Debug
+	/usr/bin/cmake -E cmake_autogen /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/icprefine_automoc.dir/ Release
 
 icprefine_automoc: CMakeFiles/icprefine_automoc
 icprefine_automoc: CMakeFiles/icprefine_automoc.dir/build.make

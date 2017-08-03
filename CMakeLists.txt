@@ -6,11 +6,11 @@ set(CMAKE_CXX_COMPILER "g++")
 #set(CMAKE_CXX_COMPILER "clang++")
 
 #debug config
-set(CMAKE_BUILD_TYPE "Debug")
+#set(CMAKE_BUILD_TYPE Debug)
 
 #debug config
-#set(CMAKE_BUILD_TYPE Release)
-#set(CMAKE_CXX_FLAGS "-std=c++11 -march=native -O3 ")
+set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_CXX_FLAGS "-std=c++11 -march=native -O3 ")
 
 #DIR config
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
@@ -186,14 +186,14 @@ add_subdirectory(${SRC_DIR}/super4pcs/io)
 add_subdirectory(${SRC_DIR}/super4pcs/utils)
 add_subdirectory(${SRC_DIR}/super4pcs/accelerators)
 
+#generate super4pcs algo library 
 add_library(super4pcs_algo SHARED ${Super4PCS_SRC} ${Super4PCS_INCLUDE})
-
 # add the executable
 add_executable(super4pcs ${SRC_DIR}/super4pcs/super4pcs_test.cc)
-
+add_executable(super ${SRC_DIR}/super.cpp)
 TARGET_LINK_LIBRARIES(super4pcs_algo super4pcs_io super4pcs_accel)
 TARGET_LINK_LIBRARIES(super4pcs super4pcs_algo super4pcs_utils)
-
+TARGET_LINK_LIBRARIES(super super4pcs_algo super4pcs_utils)
 #--------------icprefine------------------
 file(GLOB ICP_SRC ${SRC_DIR}/icprefine/*.cpp)
 set(ICP_INCLUDE
