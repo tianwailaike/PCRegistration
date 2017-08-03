@@ -1,0 +1,28 @@
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set(io_ROOT "${SRC_DIR}/super4pcs/io")
+
+find_package(Eigen3 REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIR})
+
+
+#############################################
+set(io_SRC
+    ${io_ROOT}/io.cc)
+set(io_INCLUDE
+    ${io_ROOT}/io.h
+    ${io_ROOT}/io_ply.h)
+set(OpenCV_DIR "/opt/opencv-2.4.13/share/OpenCV")
+# use library target, to make accessible to test routines
+add_library(super4pcs_io ${io_SRC} ${io_INCLUDE})
+if(IO_USE_OPENCV)
+    find_package(OpenCV REQUIRED core highgui)
+    if (OpenCV_FOUND)
+        message("[IO] texture loading with OpenCV enabled")
+        add_definitions(-DUSE_OPENCV)
+        include_directories( ${OpenCV_INCLUDE_DIRS} )
+        target_link_libraries(super4pcs_io ${OpenCV_LIBS} )
+    endif (OpenCV_FOUND)
+endif(IO_USE_OPENCV)
+message(status ${OpenCV_INCLUDE_DIRS})
+
