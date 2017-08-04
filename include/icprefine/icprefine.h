@@ -18,7 +18,8 @@ namespace pcregistration{
 using PointT = pcl::PointXYZ;
 using PointCloud = pcl::PointCloud<PointT>::Ptr;
 //#define POINT2PLANE
-#define P2P
+//#define P2P
+#define P2PC
 
 //bool toggle = true;
 class icprefine{
@@ -26,9 +27,12 @@ public:
   icprefine();
   ~ icprefine();
   int init_icp(std::string refpath,std::string datapath);
-  void run_icp();
+  icp::IcpResults run_icp(PointCloud modelCloud,PointCloud dataCloud);
   PointCloud getref();
   PointCloud getdata();
+  PointCloud getResultCloud();
+  PointCloud getFusedCloud();
+  icp::IcpResults getResult();
   pcl::visualization::PCLVisualizer::Ptr init_viewer();
   void init_viewer(pcl::visualization::PCLVisualizer::Ptr viewer);
   void setParams(icp::IcpParameters);

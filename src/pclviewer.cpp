@@ -50,12 +50,12 @@ PCLViewer::PCLViewer (QWidget *parent) :
 //     cloud->points[i].b = blue;
 //   }
 */
+  finaltrans = Eigen::Matrix4f::Identity();
+  std::string modelpath = "/home/ubuntu/lyc2017/pcp/icptest/models/shen_office-Cloud.obj";
   
-  std::string modelpath = "/home/ubuntu/lyc2017/pcp/icptest/models/bunny.obj";
-  
-  std::string datapath  = "/home/ubuntu/lyc2017/pcp/icptest/models/bunny_data.obj";
+  std::string datapath  = "/home/ubuntu/lyc2017/pcp/icptest/models/shen_office-Cloud2.obj";
   icp.init_icp(modelpath,datapath);
-  icp.run_icp();
+  icp.run_icp(icp.getref(),icp.getdata());
   /*
 //   pcl::visualization::PCLVisualizer viewer = icp.init_viewer();
 //    while (!viewer.wasStopped()) { 
@@ -135,9 +135,9 @@ PCLViewer::initialize()
 	
 	hSlider_delta = new QSlider(centralwidget);
 	hSlider_delta->setFixedSize(QSize(160,30));
-        hSlider_delta->setMaximum(0.2);
-	hSlider_delta->setMinimum(0.01);
-        hSlider_delta->setValue(0.04);
+        hSlider_delta->setMaximum(20);
+	hSlider_delta->setMinimum(1);
+        hSlider_delta->setValue(4);
         hSlider_delta->setOrientation(Qt::Horizontal);
 	
 	hSlider_npoints = new QSlider(centralwidget);
@@ -157,7 +157,7 @@ PCLViewer::initialize()
         lcdNumber_delta->setDigitCount(3);
 	lcdNumber_delta->setFixedSize(QSize(80,40));
         lcdNumber_delta->setSegmentStyle(QLCDNumber::Flat);
-        lcdNumber_delta->setProperty("intValue", QVariant(128));
+        lcdNumber_delta->setProperty("intValue", QVariant(4));
         
 	lcdNumber_npoints = new QLCDNumber(centralwidget);
         lcdNumber_npoints->setFixedSize(QSize(80,40));;
@@ -217,8 +217,12 @@ PCLViewer::initialize()
         btnicp = new QPushButton(centralwidget);
         btnicp->setText(tr("Icp Refine"));
         btnicp->setFixedSize(QSize(201, 81));
-        setCentralWidget(centralwidget);
+        //btnicp->setCheckable();
 	btnicp->setFont(font);
+	
+	setCentralWidget(centralwidget);
+	
+	
 	
 	slider_layout1->addWidget(label);
 	slider_layout1->addWidget(hSlider_delta);
@@ -237,7 +241,7 @@ PCLViewer::initialize()
 	display_layout->addLayout(slider_layout1);
 	display_layout->addLayout(slider_layout2);
 	
-	btn_layout->addWidget(btnicp);
+	btn_layout->addWidget(btnicp,Qt::AlignCenter);
 	
 	left_main_layout->addLayout(display_layout);
 	left_main_layout->addLayout(btn_layout);
@@ -286,17 +290,32 @@ void
 PCLViewer::randomButtonPressed ()
 {
   printf ("Random button was pressed\n");
-
+  printf ("ICP refine .............\n");
+  icp::IcpResults tem = icp.run_icp(icp.getref(),icp.getResultCloud());
+  finaltrans = finaltrans*tem.transformation;
+  printf ("DONE\n");
+  //PointCloud tem = icp.getResultCloud();
+  viewer->updatePointCloud(icp.getResultCloud(),"registered_cloud");
+  
+  std::stringstream r;
+  r << icp.getResult();
+  viewer->updateText(r.str(),0,0,"show_result");
+  qvtkWidget->update();
+//   std::cout<<"error is  before :"<<icp.getResult()<<std::endl;
+//   icp.getResult().clear();
+//   std::cout<<"error is  after :"<<icp.getResult()<<std::endl;
   // Set the new color
-  PointCloud tem = icp.getref();
-  for (size_t i = 0; i < tem->size(); i++)
-  {
-    tem->points[i].x = 255 *(1024 * rand () / (RAND_MAX + 1.0f));
-    tem->points[i].y = 255 *(1024 * rand () / (RAND_MAX + 1.0f));
-    tem->points[i].z = 255 *(1024 * rand () / (RAND_MAX + 1.0f));
-  }
-  viewer->updatePointCloud (tem, "original_cloud");
-  qvtkWidget->update ();
+//   PointCloud tem = icp.getref();
+//   for (size_t i = 0; i < tem->size(); i++)
+//   {
+//     tem->points[i].x = 255 *(1024 * rand () / (RAND_MAX + 1.0f));
+//     tem->points[i].y = 255 *(1024 * rand () / (RAND_MAX + 1.0f));
+//     tem->points[i].z = 255 *(1024 * rand () / (RAND_MAX + 1.0f));
+//   }
+//   viewer->updatePointCloud (tem, "reference_cloud");
+//   qvtkWidget->update ();
+
+  
 }
 
 void
@@ -316,7 +335,10 @@ PCLViewer::RGBsliderReleased ()
 void
 PCLViewer::pSliderValueChanged (int value)
 {
-  viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "cloud");
+  viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "original_cloud");
+  viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "reference_cloud");
+  viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "registered_cloud");
+  viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "current_cloud");
   qvtkWidget->update ();
 }
 

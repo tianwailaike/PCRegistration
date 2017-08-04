@@ -111,6 +111,7 @@ private:
     QLabel *label_4;
     QPushButton *btnicp;
     int leftwidth;
+    Eigen::Matrix<float,4,4> finaltrans;
  // QPushButton 
 
 };
