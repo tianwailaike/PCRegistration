@@ -136,8 +136,8 @@ include_directories(${EIGEN3_INCLUDE_DIR})
 #icprefine
 #find_package(Eigen3 REQUIRED)
 
-find_package(PCL 1.7.2)# REQUIRED COMPONENTS common io features visualization)
-add_definitions(${PCL_DEFINITIONS})
+#find_package(PCL 1.7.2)# REQUIRED COMPONENTS common io features visualization)
+#add_definitions(${PCL_DEFINITIONS})
 find_package(ICP REQUIRED)
 message(status "ICP PACKAGE is ${ICP_INCLUDE_DIRS} ${ICP_LIBRARIES}")
 
@@ -149,7 +149,7 @@ message(status ${SOPHUS_INCLUDE_DIRS})
 
 #-----------pctest------------
 find_package(OpenCV REQUIRED)
-find_package(PCL 1.7 REQUIRED COMPONENTS common io visualization registration)
+find_package(PCL 1.7.2 REQUIRED COMPONENTS common io visualization registration)
 find_package(Qt5 REQUIRED COMPONENTS Gui Core Widgets)
 find_package(VTK REQUIRED)
 add_definitions(${PCL_DEFINITIONS})
@@ -247,7 +247,8 @@ endif(ICPREFINE_COMPILE_TESTS)
 ################################################################################
 
 include_directories(${OpenCV_INCLUDE_DIRS}
-                    ${PCL_INCLUDE_DIRS})
+                    ${PCL_INCLUDE_DIRS}
+                    ${VTK_INCLUDE_DIRS})
 link_directories(${PCL_LIBRARY_DIRS}
                  "${CMAKE_SOURCE_DIR}/lib")
 file(GLOB srcs ${SRC_DIR}/*.cpp)

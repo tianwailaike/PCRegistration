@@ -1,13 +1,13 @@
 #include "pclviewer.h"
-#include "../build/ui_pclviewer.h"
+//#include "../build/ui_pclviewer.h"
 #include <boost/make_shared.hpp>
 using namespace pcregistration;
 PCLViewer::PCLViewer (QWidget *parent) :
-  QMainWindow (parent),
-  ui (new Ui::PCLViewer)
+  QMainWindow (parent)
+ // ui (new Ui::PCLViewer)
 {
-  ui->setupUi (this);
-  this->setWindowTitle ("PCL viewer");
+  //ui->setupUi (this);
+  setWindowTitle ("PCL viewer");
   /*
   //cloud.reset (new PointCloudT);
 //   vtkSmartPointer<vtkPLYReader> reader =vtkSmartPointer<vtkPLYReader>::New();
@@ -71,44 +71,187 @@ PCLViewer::PCLViewer (QWidget *parent) :
 //   pcl::visualization::PCLVisualizer::Ptr viewer_ = 
 //   icp.init_viewer();
 */
+  
+  
+  initialize();
+  
+  
   viewer.reset (new pcl::visualization::PCLVisualizer ("viewer", false)); 
   icp.init_viewer(viewer);
   std::cout<<"0"<<std::endl;
-  ui->qvtkWidget->SetRenderWindow (viewer->getRenderWindow ());
+  qvtkWidget->SetRenderWindow(viewer->getRenderWindow ());
   std::cout<<"1"<<std::endl;
-  if(ui->qvtkWidget->GetInteractor()==nullptr)
+  if(qvtkWidget->GetInteractor()==nullptr)
     std::cout<<"Interactor"<<std::endl;
-  if(ui->qvtkWidget->GetRenderWindow ()==nullptr)
+  if(qvtkWidget->GetRenderWindow ()==nullptr)
     std::cout<<"renderwindow"<<std::endl;
-  viewer->setupInteractor (ui->qvtkWidget->GetInteractor(), ui->qvtkWidget->GetRenderWindow ());
+  viewer->setupInteractor (qvtkWidget->GetInteractor(), qvtkWidget->GetRenderWindow ());
   std::cout<<"1.5"<<std::endl;
-  ui->qvtkWidget->update ();
+  qvtkWidget->update ();
   std::cout<<"2"<<std::endl;
-
+  
+  
   // Connect "random" button and the function
-  connect (ui->pushButton_random,  SIGNAL (clicked ()), this, SLOT (randomButtonPressed ()));
+  connect (btnicp,  SIGNAL (clicked ()), this, SLOT (randomButtonPressed ()));
 
   // Connect R,G,B sliders and their functions
-  connect (ui->horizontalSlider_R, SIGNAL (valueChanged (int)), this, SLOT (redSliderValueChanged (int)));
-  connect (ui->horizontalSlider_G, SIGNAL (valueChanged (int)), this, SLOT (greenSliderValueChanged (int)));
-  connect (ui->horizontalSlider_B, SIGNAL (valueChanged (int)), this, SLOT (blueSliderValueChanged (int)));
-  connect (ui->horizontalSlider_R, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
-  connect (ui->horizontalSlider_G, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
-  connect (ui->horizontalSlider_B, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
+  connect (hSlider_delta, SIGNAL (valueChanged (int)), this, SLOT (redSliderValueChanged (int)));
+  connect (hSlider_npoints, SIGNAL (valueChanged (int)), this, SLOT (greenSliderValueChanged (int)));
+  connect (horizontalSlider_B, SIGNAL (valueChanged (int)), this, SLOT (blueSliderValueChanged (int)));
+  connect (hSlider_delta, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
+  connect (hSlider_npoints, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
+  connect (horizontalSlider_B, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
 
   // Connect point size slider
-  connect (ui->horizontalSlider_p, SIGNAL (valueChanged (int)), this, SLOT (pSliderValueChanged (int)));
+  connect (horizontalSlider_p, SIGNAL (valueChanged (int)), this, SLOT (pSliderValueChanged (int)));
 
  // viewer->addPointCloud (cloud, "cloud");
   pSliderValueChanged (2);
   viewer->resetCamera ();
-  ui->qvtkWidget->update ();
+  qvtkWidget->update ();
+  leftwidth = 160;
 }
 
 void 
 PCLViewer::initialize()
 {
-  
+        QHBoxLayout* main_layout = new QHBoxLayout();
+        QVBoxLayout* left_main_layout = new QVBoxLayout();
+	QHBoxLayout* display_layout = new QHBoxLayout();
+	QVBoxLayout* slider_layout1 = new QVBoxLayout();
+	QVBoxLayout* slider_layout2 = new QVBoxLayout();
+	QVBoxLayout* btn_layout = new QVBoxLayout();
+	QVBoxLayout* QVTKWidget_layout = new QVBoxLayout();
+	
+        resize(966, 499);
+        setMinimumSize(QSize(0, 0));
+        setMaximumSize(QSize(5000, 5000));
+        centralwidget = new QWidget(this);
+	setCentralWidget(centralwidget);
+	
+        qvtkWidget = new QVTKWidget(centralwidget);
+	qvtkWidget->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+        QVTKWidget_layout->addWidget(qvtkWidget);
+	
+	hSlider_delta = new QSlider(centralwidget);
+	hSlider_delta->setFixedSize(QSize(160,30));
+        hSlider_delta->setMaximum(0.2);
+	hSlider_delta->setMinimum(0.01);
+        hSlider_delta->setValue(0.04);
+        hSlider_delta->setOrientation(Qt::Horizontal);
+	
+	hSlider_npoints = new QSlider(centralwidget);
+        hSlider_npoints->setFixedSize(QSize(160,30));;
+	hSlider_npoints->setMaximum(250);
+	hSlider_npoints->setMinimum(150);
+        hSlider_npoints->setValue(200);
+        hSlider_npoints->setOrientation(Qt::Horizontal);
+        
+	horizontalSlider_B = new QSlider(centralwidget);
+	horizontalSlider_B->setFixedSize(QSize(160,30));;
+        horizontalSlider_B->setMaximum(255);
+        horizontalSlider_B->setValue(128);
+        horizontalSlider_B->setOrientation(Qt::Horizontal);
+        
+	lcdNumber_delta = new QLCDNumber(centralwidget);
+        lcdNumber_delta->setDigitCount(3);
+	lcdNumber_delta->setFixedSize(QSize(80,40));
+        lcdNumber_delta->setSegmentStyle(QLCDNumber::Flat);
+        lcdNumber_delta->setProperty("intValue", QVariant(128));
+        
+	lcdNumber_npoints = new QLCDNumber(centralwidget);
+        lcdNumber_npoints->setFixedSize(QSize(80,40));;
+	lcdNumber_npoints->setDigitCount(3);
+        lcdNumber_npoints->setSegmentStyle(QLCDNumber::Flat);
+        lcdNumber_npoints->setProperty("intValue", QVariant(128));
+	
+        lcdNumber_B = new QLCDNumber(centralwidget);
+        lcdNumber_B->setFixedSize(QSize(80,40));
+	lcdNumber_B->setDigitCount(3);
+        lcdNumber_B->setSegmentStyle(QLCDNumber::Flat);
+        lcdNumber_B->setProperty("intValue", QVariant(128));
+        
+	horizontalSlider_p = new QSlider(centralwidget);
+        horizontalSlider_p->setFixedSize(QSize(160,30));
+        horizontalSlider_p->setMinimum(1);
+        horizontalSlider_p->setMaximum(6);
+        horizontalSlider_p->setValue(2);
+        horizontalSlider_p->setOrientation(Qt::Horizontal);
+        
+	lcdNumber_p = new QLCDNumber(centralwidget);
+        lcdNumber_p->setObjectName(QStringLiteral("lcdNumber_p"));
+        lcdNumber_p->setFixedSize(QSize(80,40));;
+        lcdNumber_p->setDigitCount(1);
+        lcdNumber_p->setSegmentStyle(QLCDNumber::Flat);
+        lcdNumber_p->setProperty("intValue", QVariant(2));
+        
+	label = new QLabel(centralwidget);
+        label->setFixedSize(QSize(191, 31));
+	label->setText(tr("Delta"));
+	label->setAlignment(Qt::AlignHCenter);
+        QFont font;
+        font.setPointSize(16);
+        font.setBold(false);
+        font.setItalic(false);
+        font.setWeight(50);
+        label->setFont(font);
+	
+        label_2 = new QLabel(centralwidget);
+        label_2->setFixedSize(QSize(191, 31));
+	label_2->setText(tr("N_Points"));
+	label_2->setAlignment(Qt::AlignHCenter);
+	label_2->setFont(font);
+	
+        label_3 = new QLabel(centralwidget);
+        label_3->setFixedSize(QSize(191, 31));
+	label_3->setText(tr(""));
+	label_3->setAlignment(Qt::AlignHCenter);
+	label_3->setFont(font);
+        
+	label_4 = new QLabel(centralwidget);
+	label_4->setFixedSize(QSize(191, 31));
+	label_4->setText(tr("Point Size"));
+	label_4->setAlignment(Qt::AlignHCenter);
+        label_4->setFont(font);
+
+        btnicp = new QPushButton(centralwidget);
+        btnicp->setText(tr("Icp Refine"));
+        btnicp->setFixedSize(QSize(201, 81));
+        setCentralWidget(centralwidget);
+	btnicp->setFont(font);
+	
+	slider_layout1->addWidget(label);
+	slider_layout1->addWidget(hSlider_delta);
+	slider_layout1->addWidget(label_2);
+	slider_layout1->addWidget(hSlider_npoints);
+	slider_layout1->addWidget(label_3);
+	slider_layout1->addWidget(horizontalSlider_B);
+	slider_layout1->addWidget(label_4);
+	slider_layout1->addWidget(horizontalSlider_p);
+	
+	slider_layout2->addWidget(lcdNumber_delta);
+	slider_layout2->addWidget(lcdNumber_npoints);
+	slider_layout2->addWidget(lcdNumber_B);
+	slider_layout2->addWidget(lcdNumber_p);
+	
+	display_layout->addLayout(slider_layout1);
+	display_layout->addLayout(slider_layout2);
+	
+	btn_layout->addWidget(btnicp);
+	
+	left_main_layout->addLayout(display_layout);
+	left_main_layout->addLayout(btn_layout);
+	
+	main_layout->addLayout(left_main_layout);
+	main_layout->addLayout(QVTKWidget_layout);
+	centralwidget->setLayout(main_layout);
+	
+
+        QObject::connect(hSlider_delta, SIGNAL(sliderMoved(int)), lcdNumber_delta, SLOT(display(int)));
+        QObject::connect(hSlider_npoints, SIGNAL(sliderMoved(int)), lcdNumber_npoints, SLOT(display(int)));
+        QObject::connect(horizontalSlider_B, SIGNAL(sliderMoved(int)), lcdNumber_B, SLOT(display(int)));
+        QObject::connect(horizontalSlider_p, SIGNAL(sliderMoved(int)), lcdNumber_p, SLOT(display(int)));
+
 }
 void 
 PCLViewer::readPLY(std::string filename)
@@ -153,7 +296,7 @@ PCLViewer::randomButtonPressed ()
     tem->points[i].z = 255 *(1024 * rand () / (RAND_MAX + 1.0f));
   }
   viewer->updatePointCloud (tem, "original_cloud");
-  ui->qvtkWidget->update ();
+  qvtkWidget->update ();
 }
 
 void
@@ -167,14 +310,14 @@ PCLViewer::RGBsliderReleased ()
 //     cloud->points[i].b = blue;
 //   }
   viewer->updatePointCloud (cloud, "cloud");
-  ui->qvtkWidget->update ();
+  qvtkWidget->update ();
 }
 
 void
 PCLViewer::pSliderValueChanged (int value)
 {
   viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "cloud");
-  ui->qvtkWidget->update ();
+  qvtkWidget->update ();
 }
 
 void
@@ -200,5 +343,5 @@ PCLViewer::blueSliderValueChanged (int value)
 
 PCLViewer::~PCLViewer ()
 {
-  delete ui;
+  //delete ui;
 }

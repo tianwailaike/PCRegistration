@@ -17,7 +17,6 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
   "EIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET"
   "FLANN_STATIC"
   "USE_OPENCV"
-  "qh_QHpointer"
   "vtkFiltersFlowPaths_AUTOINIT=1(vtkFiltersParallelFlowPaths)"
   "vtkIOExodus_AUTOINIT=1(vtkIOParallelExodus)"
   "vtkIOGeometry_AUTOINIT=1(vtkIOMPIParallel)"
@@ -39,6 +38,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include/icprefine"
   "."
   "/usr/include/eigen3"
+  "/opt/opencv-2.4.13/include/opencv"
+  "/opt/opencv-2.4.13/include"
   "/usr/include/vtk-6.2"
   "/usr/include/freetype2"
   "/usr/include/x86_64-linux-gnu/freetype2"
@@ -52,8 +53,6 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/lib/openmpi/include"
   "/usr/lib/openmpi/include/openmpi"
   "/usr/include/python2.7"
-  "/opt/opencv-2.4.13/include/opencv"
-  "/opt/opencv-2.4.13/include"
   "../src"
   )
 
