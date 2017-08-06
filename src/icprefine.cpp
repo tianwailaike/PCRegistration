@@ -62,14 +62,22 @@ int icprefine::init_icp(std::string refpath,std::string datapath)
 //   std::string data = "../models/shen_office-Cloud2.obj";
   std::string model = refpath;
   std::string data = datapath;
-  if (pcl::io::loadOBJFile<PointT> (model.c_str(), *modelCloud) == -1) {
+  if (pcl::io::loadPLYFile<PointT> (model.c_str(), *modelCloud) == -1) {
     std::cout << "Could't read file " << model;
     return (-1);
   }
-  if (pcl::io::loadOBJFile<PointT> (data.c_str(), *dataCloud) == -1) {
+  if (pcl::io::loadPLYFile<PointT> (data.c_str(), *dataCloud) == -1) {
     std::cout << "Could't read file " << model;
     return (-1);
   }
+//   for(size_t i = 0;i<modelCloud->points.size();i++)
+//   {
+//     modelCloud->points[i].r = modelCloud->points[i].r*255;
+//     modelCloud->points[i].g = modelCloud->points[i].g*255;
+//     modelCloud->points[i].b = modelCloud->points[i].b*255;
+//   }
+  pcl::io::savePLYFile("/home/ubuntu/tem/ref1.ply",*modelCloud);
+  pcl::io::savePLYFile("/home/ubuntu/tem/ref2.ply",*dataCloud);
   std::cout<< "Model Point cloud has " << modelCloud->points.size()
             << " points"<<std::endl;  
     std::cout<< "Model Point cloud has " << dataCloud->points.size()
@@ -158,6 +166,14 @@ PointCloud icprefine:: getdata()
 {
   return dataCloud;
 }
+void icprefine:: saveObject(std::string filepath)
+{
+   //save the final result ply or obj
+  //pcl::concatenateFields(*icp.getref(), *icp.getResultCloud(), *finalCloud);;
+  *fusedCloud = *modelCloud+*resultCloud;
+  pcl::io::savePLYFile(filepath,*fusedCloud);
+  std::cout<<"save object done!"<<std::endl;
+}
 
 PointCloud icprefine::getResultCloud()
 {
@@ -176,7 +192,8 @@ icp::IcpResults icprefine::run_icp(PointCloud modelCloud,PointCloud dataCloud)
 {
   
 #ifdef P2PC
-  icp::IcpPointToPointHubertSim3 icp_algorithm;
+  //icp::IcpPointToPointHubertSim3 icp_algorithm;
+  icp::IcpPointToPointHubertXYZRGBSim3 icp_algorithm;  //for xyzrgb
   icp_algorithm.setParameters(icp_param_sim3);
   icp_algorithm.setInputCurrent(dataCloud);
   icp_algorithm.setInputReference(modelCloud);
@@ -185,7 +202,7 @@ icp::IcpResults icprefine::run_icp(PointCloud modelCloud,PointCloud dataCloud)
   icp_results = icp_algorithm.getResults();
   std::cout << "ICP Results:\n" << icp_results;
   pcl::transformPointCloud(*dataCloud, *resultCloud,icp_results.transformation);
-  pcl::concatenateFields(*resultCloud, *modelCloud, *fusedCloud);
+ // pcl::concatenateFields(*resultCloud, *modelCloud, *fusedCloud);
   return icp_results;
   
   //pcl::io::savePLYFile("/home/ubuntu/result.ply",*fusedCloud);

@@ -15,7 +15,7 @@
 #include <pcl/visualization/cloud_viewer.h>
 #include <pcl/features/normal_3d.h>
 namespace pcregistration{
-using PointT = pcl::PointXYZ;
+using PointT = pcl::PointXYZRGB;
 using PointCloud = pcl::PointCloud<PointT>::Ptr;
 //#define POINT2PLANE
 //#define P2P
@@ -38,7 +38,7 @@ public:
   void setParams(icp::IcpParameters);
   static void keyboard_callback(const pcl::visualization::KeyboardEvent& event);
   static void pp_callback (const pcl::visualization::PointPickingEvent &event);
-
+  void saveObject(std::string filepath);
 private:
   PointCloud modelCloud,dataCloud;
   PointCloud resultCloud,fusedCloud;

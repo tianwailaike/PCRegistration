@@ -51,9 +51,10 @@ PCLViewer::PCLViewer (QWidget *parent) :
 //   }
 */
   finaltrans = Eigen::Matrix4f::Identity();
-  std::string modelpath = "/home/ubuntu/lyc2017/pcp/icptest/models/shen_office-Cloud.obj";
-  
-  std::string datapath  = "/home/ubuntu/lyc2017/pcp/icptest/models/shen_office-Cloud2.obj";
+  //std::string modelpath = "/home/ubuntu/lyc2017/pcp/icptest/models/bunny.obj";
+  std::string modelpath = "/home/ubuntu/points1.ply";
+  std::string datapath = "/home/ubuntu/points2.ply";
+  //std::string datapath  = "/home/ubuntu/lyc2017/pcp/icptest/models/bunny_data.obj";
   icp.init_icp(modelpath,datapath);
   icp.run_icp(icp.getref(),icp.getdata());
   /*
@@ -104,7 +105,9 @@ PCLViewer::PCLViewer (QWidget *parent) :
 
   // Connect point size slider
   connect (horizontalSlider_p, SIGNAL (valueChanged (int)), this, SLOT (pSliderValueChanged (int)));
-
+  
+  //Connect the save button;
+  connect (btnsave,  SIGNAL (clicked ()), this, SLOT (saveButtonPressed()));
  // viewer->addPointCloud (cloud, "cloud");
   pSliderValueChanged (2);
   viewer->resetCamera ();
@@ -122,6 +125,7 @@ PCLViewer::initialize()
 	QVBoxLayout* slider_layout2 = new QVBoxLayout();
 	QVBoxLayout* btn_layout = new QVBoxLayout();
 	QVBoxLayout* QVTKWidget_layout = new QVBoxLayout();
+	QVBoxLayout* error_layout = new QVBoxLayout();
 	
         resize(966, 499);
         setMinimumSize(QSize(0, 0));
@@ -170,6 +174,12 @@ PCLViewer::initialize()
 	lcdNumber_B->setDigitCount(3);
         lcdNumber_B->setSegmentStyle(QLCDNumber::Flat);
         lcdNumber_B->setProperty("intValue", QVariant(128));
+	
+	lcdNumber_error = new QLCDNumber(centralwidget);
+        lcdNumber_error->setFixedSize(QSize(180,40));
+	lcdNumber_error->setDigitCount(5);
+        lcdNumber_error->setSegmentStyle(QLCDNumber::Flat);
+        lcdNumber_error->setProperty("doubleValue", QVariant(static_cast<double>(3.0000)));
         
 	horizontalSlider_p = new QSlider(centralwidget);
         horizontalSlider_p->setFixedSize(QSize(160,30));
@@ -214,11 +224,25 @@ PCLViewer::initialize()
 	label_4->setAlignment(Qt::AlignHCenter);
         label_4->setFont(font);
 
+	
+	label_error = new QLabel(centralwidget);
+	label_error->setFixedSize(QSize(191, 31));
+	label_error->setText(tr("Final Error"));
+	label_error->setAlignment(Qt::AlignHCenter);
+        label_error->setFont(font);
+	
         btnicp = new QPushButton(centralwidget);
         btnicp->setText(tr("Icp Refine"));
         btnicp->setFixedSize(QSize(201, 81));
         //btnicp->setCheckable();
 	btnicp->setFont(font);
+	
+	btnsave = new QPushButton(centralwidget);
+        btnsave->setText(tr("Save"));
+        btnsave->setFixedSize(QSize(201, 81));
+        //btnicp->setCheckable();
+	btnsave->setFont(font);
+	
 	
 	setCentralWidget(centralwidget);
 	
@@ -238,13 +262,17 @@ PCLViewer::initialize()
 	slider_layout2->addWidget(lcdNumber_B);
 	slider_layout2->addWidget(lcdNumber_p);
 	
+	error_layout->addWidget(label_error);
+	error_layout->addWidget(lcdNumber_error);
+	
 	display_layout->addLayout(slider_layout1);
 	display_layout->addLayout(slider_layout2);
 	
 	btn_layout->addWidget(btnicp,Qt::AlignCenter);
-	
+	btn_layout->addWidget(btnsave,Qt::AlignCenter);
 	left_main_layout->addLayout(display_layout);
 	left_main_layout->addLayout(btn_layout);
+	left_main_layout->addLayout(error_layout);
 	
 	main_layout->addLayout(left_main_layout);
 	main_layout->addLayout(QVTKWidget_layout);
@@ -255,6 +283,8 @@ PCLViewer::initialize()
         QObject::connect(hSlider_npoints, SIGNAL(sliderMoved(int)), lcdNumber_npoints, SLOT(display(int)));
         QObject::connect(horizontalSlider_B, SIGNAL(sliderMoved(int)), lcdNumber_B, SLOT(display(int)));
         QObject::connect(horizontalSlider_p, SIGNAL(sliderMoved(int)), lcdNumber_p, SLOT(display(int)));
+	QObject::connect(this,SIGNAL(errorChanged(double)),lcdNumber_error,SLOT(display(double)));
+	
 
 }
 void 
@@ -292,13 +322,15 @@ PCLViewer::randomButtonPressed ()
   printf ("Random button was pressed\n");
   printf ("ICP refine .............\n");
   icp::IcpResults tem = icp.run_icp(icp.getref(),icp.getResultCloud());
+  emit errorChanged(static_cast<double>(tem.registrationError[tem.registrationError.size() - 1]));
   finaltrans = finaltrans*tem.transformation;
+  std::cout<<"This is the final mat result:\n"<<finaltrans<<std::endl;
   printf ("DONE\n");
   //PointCloud tem = icp.getResultCloud();
   viewer->updatePointCloud(icp.getResultCloud(),"registered_cloud");
   
   std::stringstream r;
-  r << icp.getResult();
+  r << tem;
   viewer->updateText(r.str(),0,0,"show_result");
   qvtkWidget->update();
 //   std::cout<<"error is  before :"<<icp.getResult()<<std::endl;
@@ -318,6 +350,21 @@ PCLViewer::randomButtonPressed ()
   
 }
 
+void 
+PCLViewer::saveButtonPressed()
+{
+  
+  //save the final transformation
+  std::ofstream save;
+  save.open("/home/ubuntu/finaltans.txt",std::ios::out|std::ios::trunc);
+  std::stringstream r;
+  r<<finaltrans;
+  save<<r.str();
+  save.close();
+  std::cout<<"save done!"<<std::endl;
+  std::string filepath = "/home/ubuntu/result.ply";
+  icp.saveObject(filepath);
+}
 void
 PCLViewer::RGBsliderReleased ()
 {

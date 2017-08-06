@@ -80,7 +80,13 @@ public Q_SLOTS:
 
   void
   blueSliderValueChanged (int value);
+  
+  void
+  saveButtonPressed ();
 
+signals:
+  void
+  errorChanged(double value);
 protected:
   boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer;
   //pcl::visualization::PCLVisualizer::Ptr viewer;
@@ -90,7 +96,7 @@ protected:
   unsigned int red;
   unsigned int green;
   unsigned int blue;
-
+ 
 private:
  // Ui::PCLViewer *ui;
   QWidget * centralwidget;
@@ -103,15 +109,19 @@ private:
     QLCDNumber *lcdNumber_delta;
     QLCDNumber *lcdNumber_npoints;
     QLCDNumber *lcdNumber_B;
+    QLCDNumber *lcdNumber_error;
     QSlider *horizontalSlider_p;
     QLCDNumber *lcdNumber_p;
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
     QLabel *label_4;
+    QLabel *label_error;
     QPushButton *btnicp;
+    QPushButton *btnsave;
     int leftwidth;
     Eigen::Matrix<float,4,4> finaltrans;
+    PointCloud finalCloud;
  // QPushButton 
 
 };
