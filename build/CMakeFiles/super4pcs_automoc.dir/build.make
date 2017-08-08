@@ -55,7 +55,7 @@ include CMakeFiles/super4pcs_automoc.dir/progress.make
 
 CMakeFiles/super4pcs_automoc:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic moc for target super4pcs"
-	/usr/bin/cmake -E cmake_autogen /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/super4pcs_automoc.dir/ Release
+	/usr/bin/cmake -E cmake_autogen /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/super4pcs_automoc.dir/ Debug
 
 super4pcs_automoc: CMakeFiles/super4pcs_automoc
 super4pcs_automoc: CMakeFiles/super4pcs_automoc.dir/build.make

@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "pctest_automoc.cpp"
-  "super_automoc.cpp"
   "super4pcs_algo_automoc.cpp"
   "icp_algo_automoc.cpp"
   "super4pcs_automoc.cpp"
@@ -8,6 +7,7 @@ file(REMOVE_RECURSE
   "ui_pclviewer.h"
   "CMakeFiles/pctest.dir/src/pclviewer.cpp.o"
   "CMakeFiles/pctest.dir/src/main.cpp.o"
+  "CMakeFiles/pctest.dir/src/ICPViewer.cpp.o"
   "CMakeFiles/pctest.dir/pctest_automoc.cpp.o"
   "pctest.pdb"
   "pctest"

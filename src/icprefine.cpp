@@ -2,7 +2,7 @@
 #include "icprefine/icprefine.h"
 #include <boost/make_shared.hpp>
 using namespace pcregistration;
-
+using namespace std;
 void icprefine::keyboard_callback(const pcl::visualization::KeyboardEvent& event)
 {
   if(event.getKeySym()=="space"&&event.keyDown());
@@ -43,6 +43,15 @@ icprefine::~ icprefine()
   
   
 }
+icprefine* icprefine::singleton_= NULL;
+string icprefine:: getsuffix(string file)
+{
+  if(file.empty())
+    return "";
+  size_t found = file.rfind(".");
+  string str = file.substr(found);
+  return str;
+}
 int icprefine::init_icp(std::string refpath,std::string datapath)
 {
   // Initialize Google's logging library.
@@ -62,22 +71,42 @@ int icprefine::init_icp(std::string refpath,std::string datapath)
 //   std::string data = "../models/shen_office-Cloud2.obj";
   std::string model = refpath;
   std::string data = datapath;
-  if (pcl::io::loadPLYFile<PointT> (model.c_str(), *modelCloud) == -1) {
-    std::cout << "Could't read file " << model;
-    return (-1);
+  std::string suffix = getsuffix(model);
+    if(suffix=="ply")
+  {
+     if (pcl::io::loadPLYFile<PointT> (model.c_str(), *modelCloud) == -1) 
+     {
+        std::cout << "Could't read file " << model;
+        return (-1);
+     }
+     if (pcl::io::loadPLYFile<PointT> (data.c_str(), *dataCloud) == -1) 
+     {
+        std::cout << "Could't read file " << model;
+        return (-1);
+     }
   }
-  if (pcl::io::loadPLYFile<PointT> (data.c_str(), *dataCloud) == -1) {
-    std::cout << "Could't read file " << model;
-    return (-1);
+  else
+  {
+     if (pcl::io::loadOBJFile<PointT> (model.c_str(), *modelCloud) == -1) 
+     {
+        std::cout << "Could't read file " << model;
+        return (-1);
+     }
+     if (pcl::io::loadOBJFile<PointT> (data.c_str(), *dataCloud) == -1) 
+     {
+        std::cout << "Could't read file " << model;
+        return (-1);
+     }
   }
+    
 //   for(size_t i = 0;i<modelCloud->points.size();i++)
 //   {
 //     modelCloud->points[i].r = modelCloud->points[i].r*255;
 //     modelCloud->points[i].g = modelCloud->points[i].g*255;
 //     modelCloud->points[i].b = modelCloud->points[i].b*255;
 //   }
-  pcl::io::savePLYFile("/home/ubuntu/tem/ref1.ply",*modelCloud);
-  pcl::io::savePLYFile("/home/ubuntu/tem/ref2.ply",*dataCloud);
+//   pcl::io::savePLYFile("/home/ubuntu/tem/ref1.ply",*modelCloud);
+//   pcl::io::savePLYFile("/home/ubuntu/tem/ref2.ply",*dataCloud);
   std::cout<< "Model Point cloud has " << modelCloud->points.size()
             << " points"<<std::endl;  
     std::cout<< "Model Point cloud has " << dataCloud->points.size()
@@ -446,28 +475,7 @@ void icprefine::init_viewer(pcl::visualization::PCLVisualizer::Ptr viewer)
   current_cloud_color_handler(dataCloud, 20, 230, 20);  // Green
   viewer->addPointCloud(dataCloud,current_cloud_color_handler,
 			"current_cloud",v3);
-//--------------- Define R,G,B colors for the point cloud---------------
-/*
 
-//   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ>
-//   transformed_cloud_color_handler(dataCloud, 230, 20, 20);  // Red 230 20 20
-//   viewer.addPointCloud(dataCloud, transformed_cloud_color_handler,
-//                        "transformed_cloud");
-//   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ>
-//   transformed_cloud_color_handler(dataCloud, 230, 20, 20); 
-  
-  
-//   pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ>
-//   registered_cloud_color_handler(resultCloud, 20, 230, 20);  // Green
-//   viewer.addPointCloud(resultCloud,
-//                        registered_cloud_color_handler,
-//                        "registered cloud");
- 
-//   viewer.addCoordinateSystem(1.0, "cloud", 0);
-//  // viewer.addCoordinateSystem(1.0,"cloud1",1);
-//   // Setting background to a dark grey
-//   viewer.setBackgroundColor(0.05, 0.05, 0.05, 0);
-  */
   viewer->setPointCloudRenderingProperties(
     pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "current_cloud",v3);  
   viewer->setPointCloudRenderingProperties(
@@ -482,18 +490,6 @@ void icprefine::init_viewer(pcl::visualization::PCLVisualizer::Ptr viewer)
   viewer->addText(r.str(), 0, 0,"show_result",v1);
   viewer->setShowFPS(true);
 
-  // Display the visualiser until 'q' key is pressed
-//   while (!viewer.wasStopped()) { 
-// //    if(toggle)
-// //   {
-// //   viewer.addPointCloud(dataCloud, transformed_cloud_color_handler,
-// //                        "transformed_cloud");
-// //   viewer.updatePointCloud(dataCloud,"transformed_cloud");
-// //   toggle = !toggle;
-// //   }
-//     viewer.spinOnce();
-//   }
-  //}
 
 }
 

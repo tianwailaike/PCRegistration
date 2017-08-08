@@ -6,11 +6,11 @@ set(CMAKE_CXX_COMPILER "g++")
 #set(CMAKE_CXX_COMPILER "clang++")
 
 #debug config
-#set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Debug)
 
 #debug config
-set(CMAKE_BUILD_TYPE Release)
-set(CMAKE_CXX_FLAGS "-std=c++11 -march=native -O3 ")
+#set(CMAKE_BUILD_TYPE Release)
+#set(CMAKE_CXX_FLAGS "-std=c++11 -march=native -O3 ")
 
 #DIR config
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
@@ -171,6 +171,7 @@ set(Super4PCS_SRC
     ${SRC_DIR}/super4pcs/algorithms/match4pcsBase.cc
     ${SRC_DIR}/super4pcs/algorithms/4pcs.cc
     ${SRC_DIR}/super4pcs/algorithms/super4pcs.cc
+    ${SRC_DIR}/super.cpp
 )
 set(Super4PCS_INCLUDE
     ${INC_DIR}/super4pcs/sampling.h
@@ -187,13 +188,13 @@ add_subdirectory(${SRC_DIR}/super4pcs/utils)
 add_subdirectory(${SRC_DIR}/super4pcs/accelerators)
 
 #generate super4pcs algo library 
-add_library(super4pcs_algo SHARED ${Super4PCS_SRC} ${Super4PCS_INCLUDE})
+add_library(super4pcs_algo ${Super4PCS_SRC} ${Super4PCS_INCLUDE})
 # add the executable
 add_executable(super4pcs ${SRC_DIR}/super4pcs/super4pcs_test.cc)
-add_executable(super ${SRC_DIR}/super.cpp)
+#add_executable(super ${SRC_DIR}/super.cpp)
 TARGET_LINK_LIBRARIES(super4pcs_algo super4pcs_io super4pcs_accel)
 TARGET_LINK_LIBRARIES(super4pcs super4pcs_algo super4pcs_utils)
-TARGET_LINK_LIBRARIES(super super4pcs_algo super4pcs_utils)
+#TARGET_LINK_LIBRARIES(super super4pcs_algo super4pcs_utils)
 #--------------icprefine------------------
 file(GLOB ICP_SRC ${SRC_DIR}/icprefine/*.cpp)
 set(ICP_INCLUDE
@@ -248,19 +249,21 @@ endif(ICPREFINE_COMPILE_TESTS)
 
 include_directories(${OpenCV_INCLUDE_DIRS}
                     ${PCL_INCLUDE_DIRS}
-                    ${VTK_INCLUDE_DIRS})
+                    ${VTK_INCLUDE_DIRS}
+                    ${INC_DIR})
 link_directories(${PCL_LIBRARY_DIRS}
                  "${CMAKE_SOURCE_DIR}/lib")
 file(GLOB srcs ${SRC_DIR}/*.cpp)
 file(GLOB hdrs ${SRC_DIR}/*.h)
 qt5_wrap_ui(hdr_ui ${SRC_DIR}/pclviewer.ui) #used to moc compile ui.h
 
-add_executable(pctest ${SRC_DIR}/pclviewer.cpp ${SRC_DIR}/pclviewer.h ${hdr_ui} ${SRC_DIR}/main.cpp)
+add_executable(pctest ${SRC_DIR}/pclviewer.cpp ${SRC_DIR}/pclviewer.h ${hdr_ui} ${SRC_DIR}/main.cpp
+                ${SRC_DIR}/ICPViewer.cpp ${INC_DIR}/ICPViewer.h )
 qt5_use_modules(pctest Widgets Core Gui)#this is a modern way to use the qt moudles
 message(status ${Qt5Gui_LIBRARIES}) 
 message(status ${VTK_LIBRARIES})
 target_link_libraries(pctest ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES} ${PCL_VISUALIZATION_LIBRARIES}
-                      ${OpenCV_LIBS} ${VTK_LIBRARIES} icp_algo)     
+                      ${OpenCV_LIBS} ${VTK_LIBRARIES} icp_algo super4pcs_algo)     
                       #icp_algo super4pcs_algo         
 
 #install(TARGETS pcregistration RUNTIME DESTINATION bin)

@@ -15,7 +15,8 @@
 #include <pcl/visualization/cloud_viewer.h>
 #include <pcl/features/normal_3d.h>
 namespace pcregistration{
-using PointT = pcl::PointXYZRGB;
+using PointT = pcl::PointXYZRGB; //when adding data without rgb ,icprefine 
+//will return pc with rgb(0,0,0) ,which is black
 using PointCloud = pcl::PointCloud<PointT>::Ptr;
 //#define POINT2PLANE
 //#define P2P
@@ -26,6 +27,23 @@ class icprefine{
 public:
   icprefine();
   ~ icprefine();
+  static icprefine *singleton_;
+  static icprefine *ResetInstance()
+	{
+		if (singleton_ != NULL)
+		{
+			delete singleton_;
+			singleton_ = NULL;
+		}
+		return GetInsance();
+	}
+  static icprefine *GetInsance()
+	{
+		if(singleton_ == NULL)
+			singleton_ = new icprefine();
+		return singleton_;
+	}
+  std::string getsuffix(std::string file);
   int init_icp(std::string refpath,std::string datapath);
   icp::IcpResults run_icp(PointCloud modelCloud,PointCloud dataCloud);
   PointCloud getref();

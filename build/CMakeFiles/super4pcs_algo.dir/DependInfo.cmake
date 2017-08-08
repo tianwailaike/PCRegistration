@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/ubuntu/lyc2017/pcp/PCRegistration/src/super.cpp" "/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/super4pcs_algo.dir/src/super.cpp.o"
   "/home/ubuntu/lyc2017/pcp/PCRegistration/src/super4pcs/algorithms/4pcs.cc" "/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/4pcs.cc.o"
   "/home/ubuntu/lyc2017/pcp/PCRegistration/src/super4pcs/algorithms/match4pcsBase.cc" "/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/match4pcsBase.cc.o"
   "/home/ubuntu/lyc2017/pcp/PCRegistration/src/super4pcs/algorithms/super4pcs.cc" "/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/super4pcs.cc.o"
@@ -13,6 +14,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
+  "DEBUG"
   "DISABLE_PCAP"
   "DISABLE_PNG"
   "EIGEN_USE_NEW_STDVECTOR"

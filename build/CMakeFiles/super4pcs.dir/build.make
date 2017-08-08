@@ -116,7 +116,7 @@ super4pcs_EXTERNAL_OBJECTS =
 super4pcs: CMakeFiles/super4pcs.dir/src/super4pcs/super4pcs_test.cc.o
 super4pcs: CMakeFiles/super4pcs.dir/super4pcs_automoc.cpp.o
 super4pcs: CMakeFiles/super4pcs.dir/build.make
-super4pcs: ../lib/libsuper4pcs_algo.so
+super4pcs: ../lib/libsuper4pcs_algo.a
 super4pcs: ../lib/libsuper4pcs_io.a
 super4pcs: /opt/opencv-2.4.13/lib/libopencv_videostab.so.2.4.13
 super4pcs: /opt/opencv-2.4.13/lib/libopencv_ts.a

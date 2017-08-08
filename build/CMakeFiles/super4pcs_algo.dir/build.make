@@ -129,9 +129,33 @@ CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/super4pcs.cc.o.provides: 
 CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/super4pcs.cc.o.provides.build: CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/super4pcs.cc.o
 
 
+CMakeFiles/super4pcs_algo.dir/src/super.cpp.o: CMakeFiles/super4pcs_algo.dir/flags.make
+CMakeFiles/super4pcs_algo.dir/src/super.cpp.o: ../src/super.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/super4pcs_algo.dir/src/super.cpp.o"
+	g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/super4pcs_algo.dir/src/super.cpp.o -c /home/ubuntu/lyc2017/pcp/PCRegistration/src/super.cpp
+
+CMakeFiles/super4pcs_algo.dir/src/super.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/super4pcs_algo.dir/src/super.cpp.i"
+	g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/lyc2017/pcp/PCRegistration/src/super.cpp > CMakeFiles/super4pcs_algo.dir/src/super.cpp.i
+
+CMakeFiles/super4pcs_algo.dir/src/super.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/super4pcs_algo.dir/src/super.cpp.s"
+	g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/lyc2017/pcp/PCRegistration/src/super.cpp -o CMakeFiles/super4pcs_algo.dir/src/super.cpp.s
+
+CMakeFiles/super4pcs_algo.dir/src/super.cpp.o.requires:
+
+.PHONY : CMakeFiles/super4pcs_algo.dir/src/super.cpp.o.requires
+
+CMakeFiles/super4pcs_algo.dir/src/super.cpp.o.provides: CMakeFiles/super4pcs_algo.dir/src/super.cpp.o.requires
+	$(MAKE) -f CMakeFiles/super4pcs_algo.dir/build.make CMakeFiles/super4pcs_algo.dir/src/super.cpp.o.provides.build
+.PHONY : CMakeFiles/super4pcs_algo.dir/src/super.cpp.o.provides
+
+CMakeFiles/super4pcs_algo.dir/src/super.cpp.o.provides.build: CMakeFiles/super4pcs_algo.dir/src/super.cpp.o
+
+
 CMakeFiles/super4pcs_algo.dir/super4pcs_algo_automoc.cpp.o: CMakeFiles/super4pcs_algo.dir/flags.make
 CMakeFiles/super4pcs_algo.dir/super4pcs_algo_automoc.cpp.o: super4pcs_algo_automoc.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/super4pcs_algo.dir/super4pcs_algo_automoc.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/super4pcs_algo.dir/super4pcs_algo_automoc.cpp.o"
 	g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/super4pcs_algo.dir/super4pcs_algo_automoc.cpp.o -c /home/ubuntu/lyc2017/pcp/PCRegistration/build/super4pcs_algo_automoc.cpp
 
 CMakeFiles/super4pcs_algo.dir/super4pcs_algo_automoc.cpp.i: cmake_force
@@ -158,53 +182,32 @@ super4pcs_algo_OBJECTS = \
 "CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/match4pcsBase.cc.o" \
 "CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/4pcs.cc.o" \
 "CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/super4pcs.cc.o" \
+"CMakeFiles/super4pcs_algo.dir/src/super.cpp.o" \
 "CMakeFiles/super4pcs_algo.dir/super4pcs_algo_automoc.cpp.o"
 
 # External object files for target super4pcs_algo
 super4pcs_algo_EXTERNAL_OBJECTS =
 
-../lib/libsuper4pcs_algo.so: CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/match4pcsBase.cc.o
-../lib/libsuper4pcs_algo.so: CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/4pcs.cc.o
-../lib/libsuper4pcs_algo.so: CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/super4pcs.cc.o
-../lib/libsuper4pcs_algo.so: CMakeFiles/super4pcs_algo.dir/super4pcs_algo_automoc.cpp.o
-../lib/libsuper4pcs_algo.so: CMakeFiles/super4pcs_algo.dir/build.make
-../lib/libsuper4pcs_algo.so: ../lib/libsuper4pcs_io.a
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_videostab.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_ts.a
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_superres.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_stitching.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_contrib.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_nonfree.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_ocl.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_gpu.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_photo.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_objdetect.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_legacy.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_video.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_ml.so.2.4.13
-../lib/libsuper4pcs_algo.so: /usr/local/cuda/lib64/libcufft.so
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_calib3d.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_features2d.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_highgui.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_imgproc.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_flann.so.2.4.13
-../lib/libsuper4pcs_algo.so: /opt/opencv-2.4.13/lib/libopencv_core.so.2.4.13
-../lib/libsuper4pcs_algo.so: /usr/local/cuda/lib64/libcudart.so
-../lib/libsuper4pcs_algo.so: /usr/local/cuda/lib64/libnppc.so
-../lib/libsuper4pcs_algo.so: /usr/local/cuda/lib64/libnppi.so
-../lib/libsuper4pcs_algo.so: /usr/local/cuda/lib64/libnpps.so
-../lib/libsuper4pcs_algo.so: CMakeFiles/super4pcs_algo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library ../lib/libsuper4pcs_algo.so"
+../lib/libsuper4pcs_algo.a: CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/match4pcsBase.cc.o
+../lib/libsuper4pcs_algo.a: CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/4pcs.cc.o
+../lib/libsuper4pcs_algo.a: CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/super4pcs.cc.o
+../lib/libsuper4pcs_algo.a: CMakeFiles/super4pcs_algo.dir/src/super.cpp.o
+../lib/libsuper4pcs_algo.a: CMakeFiles/super4pcs_algo.dir/super4pcs_algo_automoc.cpp.o
+../lib/libsuper4pcs_algo.a: CMakeFiles/super4pcs_algo.dir/build.make
+../lib/libsuper4pcs_algo.a: CMakeFiles/super4pcs_algo.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library ../lib/libsuper4pcs_algo.a"
+	$(CMAKE_COMMAND) -P CMakeFiles/super4pcs_algo.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/super4pcs_algo.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/super4pcs_algo.dir/build: ../lib/libsuper4pcs_algo.so
+CMakeFiles/super4pcs_algo.dir/build: ../lib/libsuper4pcs_algo.a
 
 .PHONY : CMakeFiles/super4pcs_algo.dir/build
 
 CMakeFiles/super4pcs_algo.dir/requires: CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/match4pcsBase.cc.o.requires
 CMakeFiles/super4pcs_algo.dir/requires: CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/4pcs.cc.o.requires
 CMakeFiles/super4pcs_algo.dir/requires: CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/super4pcs.cc.o.requires
+CMakeFiles/super4pcs_algo.dir/requires: CMakeFiles/super4pcs_algo.dir/src/super.cpp.o.requires
 CMakeFiles/super4pcs_algo.dir/requires: CMakeFiles/super4pcs_algo.dir/super4pcs_algo_automoc.cpp.o.requires
 
 .PHONY : CMakeFiles/super4pcs_algo.dir/requires

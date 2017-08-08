@@ -9,11 +9,14 @@
 
 #include "io/io.h"
 #include "utils/geometry.h"
-
+#include <pcl/point_types.h>
+#include <pcl/point_cloud.h>
 #define sqr(x) ((x) * (x))
   using namespace std;
   using namespace match_4pcs;
   using namespace Super4PCS;
+  using PointT = pcl::PointXYZRGB;
+  using PointCloud = pcl::PointCloud<PointT>::Ptr;
   
 namespace pcregistration{
 
@@ -23,13 +26,14 @@ class super{
 public:
   super();
   ~super();
-  void init();
+  void init_super(string refpath, string curpath);
   void setDelta(double delta_);
   void getArgs(int argc, char **argv);
   PCSMatrixT getResults();
   void setParams(PCSOptions options_);
   int run_super(int argc,char** argv);
   int run_super();
+  void P3D2PCL(vector<Point3D>& set,PointCloud& pc);
 private:
   PCSOptions options;   //params
   PCSMatrixT result;   //results

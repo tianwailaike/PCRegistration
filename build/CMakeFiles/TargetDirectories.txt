@@ -7,12 +7,9 @@
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/ContinuousUpdate.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/ContinuousStart.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/ExperimentalMemCheck.dir
-/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/ExperimentalCoverage.dir
-/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/ExperimentalBuild.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/Continuous.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/ContinuousMemCheck.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/Nightly.dir
-/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/super.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/ExperimentalTest.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/NightlyConfigure.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/buildtests.dir
@@ -37,8 +34,9 @@
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/ExperimentalUpdate.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/test.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/ExperimentalConfigure.dir
+/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/ExperimentalCoverage.dir
+/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/ExperimentalBuild.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/pctest_automoc.dir
-/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/super_automoc.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/super4pcs_algo_automoc.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/icp_algo_automoc.dir
 /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/super4pcs_automoc.dir

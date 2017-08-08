@@ -17,6 +17,10 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QFileDialog>
 #include "QVTKWidget.h"
 
 // Point Cloud Library
@@ -40,7 +44,9 @@
 // typedef pcl::PointCloud<PointT> PointCloudT;
 using PointT = pcl::PointXYZRGB;
 using PointCloudT = pcl::PointCloud<PointT>;
-#include "icprefine/icprefine.h"
+#include "ICPViewer.h"
+//#include "icprefine.h"
+#include "super.h"
 using namespace pcregistration;
 
 
@@ -57,72 +63,36 @@ class PCLViewer : public QMainWindow
 public:
   explicit PCLViewer (QWidget *parent = 0);
   ~PCLViewer ();
-  void readPLY(std::string filename);
-  void createBtns();
-  void createSliders();
-  void createLCDNumbers();
-
+  void createMainWidget();
+  void createMenus();
+  void createActions();
 public Q_SLOTS:
-  void
-  randomButtonPressed ();
-
-  void
-  RGBsliderReleased ();
-
-  void
-  pSliderValueChanged (int value);
-
-  void
-  redSliderValueChanged (int value);
-
-  void
-  greenSliderValueChanged (int value);
-
-  void
-  blueSliderValueChanged (int value);
+  bool loadpc_slot();
   
-  void
-  saveButtonPressed ();
-
+  void supereg_slot();
+  
+  void icp_slot();
 signals:
-  void
-  errorChanged(double value);
 protected:
-  boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer;
-  //pcl::visualization::PCLVisualizer::Ptr viewer;
-  //boost::shared_ptr<pcl::visualization::CloudVierer> viewer;
-  PointCloudT::Ptr cloud;
-
-  unsigned int red;
-  unsigned int green;
-  unsigned int blue;
  
 private:
  // Ui::PCLViewer *ui;
-  QWidget * centralwidget;
-  QVTKWidget* qvtkWidget;
+  QStackedWidget * stacked_widget;
+  QWidget* mainWidget;
   void initialize();
-  icprefine icp;
-    QSlider *hSlider_delta;
-    QSlider *hSlider_npoints;
-    QSlider *horizontalSlider_B;
-    QLCDNumber *lcdNumber_delta;
-    QLCDNumber *lcdNumber_npoints;
-    QLCDNumber *lcdNumber_B;
-    QLCDNumber *lcdNumber_error;
-    QSlider *horizontalSlider_p;
-    QLCDNumber *lcdNumber_p;
-    QLabel *label;
-    QLabel *label_2;
-    QLabel *label_3;
-    QLabel *label_4;
-    QLabel *label_error;
-    QPushButton *btnicp;
-    QPushButton *btnsave;
-    int leftwidth;
-    Eigen::Matrix<float,4,4> finaltrans;
-    PointCloud finalCloud;
- // QPushButton 
+  ICPViewer* icpviewer;
+  //icprefine icp;
+  super supereg;
+  QHBoxLayout* mainlayout;
+  QMenu* file_menu;
+  QMenu* tool_menu;
+  QAction* loadpcs_action;
+  QAction* open_file_action;
+  QAction* save_file_action;
+  QAction* supereg_action;
+  QAction* icprefine_action;
+  QAction* exit_action;
+  QStringList tmp;
 
 };
 

@@ -109,9 +109,33 @@ CMakeFiles/pctest.dir/src/main.cpp.o.provides: CMakeFiles/pctest.dir/src/main.cp
 CMakeFiles/pctest.dir/src/main.cpp.o.provides.build: CMakeFiles/pctest.dir/src/main.cpp.o
 
 
+CMakeFiles/pctest.dir/src/ICPViewer.cpp.o: CMakeFiles/pctest.dir/flags.make
+CMakeFiles/pctest.dir/src/ICPViewer.cpp.o: ../src/ICPViewer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pctest.dir/src/ICPViewer.cpp.o"
+	g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pctest.dir/src/ICPViewer.cpp.o -c /home/ubuntu/lyc2017/pcp/PCRegistration/src/ICPViewer.cpp
+
+CMakeFiles/pctest.dir/src/ICPViewer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pctest.dir/src/ICPViewer.cpp.i"
+	g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/lyc2017/pcp/PCRegistration/src/ICPViewer.cpp > CMakeFiles/pctest.dir/src/ICPViewer.cpp.i
+
+CMakeFiles/pctest.dir/src/ICPViewer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pctest.dir/src/ICPViewer.cpp.s"
+	g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/lyc2017/pcp/PCRegistration/src/ICPViewer.cpp -o CMakeFiles/pctest.dir/src/ICPViewer.cpp.s
+
+CMakeFiles/pctest.dir/src/ICPViewer.cpp.o.requires:
+
+.PHONY : CMakeFiles/pctest.dir/src/ICPViewer.cpp.o.requires
+
+CMakeFiles/pctest.dir/src/ICPViewer.cpp.o.provides: CMakeFiles/pctest.dir/src/ICPViewer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/pctest.dir/build.make CMakeFiles/pctest.dir/src/ICPViewer.cpp.o.provides.build
+.PHONY : CMakeFiles/pctest.dir/src/ICPViewer.cpp.o.provides
+
+CMakeFiles/pctest.dir/src/ICPViewer.cpp.o.provides.build: CMakeFiles/pctest.dir/src/ICPViewer.cpp.o
+
+
 CMakeFiles/pctest.dir/pctest_automoc.cpp.o: CMakeFiles/pctest.dir/flags.make
 CMakeFiles/pctest.dir/pctest_automoc.cpp.o: pctest_automoc.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pctest.dir/pctest_automoc.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pctest.dir/pctest_automoc.cpp.o"
 	g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pctest.dir/pctest_automoc.cpp.o -c /home/ubuntu/lyc2017/pcp/PCRegistration/build/pctest_automoc.cpp
 
 CMakeFiles/pctest.dir/pctest_automoc.cpp.i: cmake_force
@@ -137,6 +161,7 @@ CMakeFiles/pctest.dir/pctest_automoc.cpp.o.provides.build: CMakeFiles/pctest.dir
 pctest_OBJECTS = \
 "CMakeFiles/pctest.dir/src/pclviewer.cpp.o" \
 "CMakeFiles/pctest.dir/src/main.cpp.o" \
+"CMakeFiles/pctest.dir/src/ICPViewer.cpp.o" \
 "CMakeFiles/pctest.dir/pctest_automoc.cpp.o"
 
 # External object files for target pctest
@@ -144,6 +169,7 @@ pctest_EXTERNAL_OBJECTS =
 
 pctest: CMakeFiles/pctest.dir/src/pclviewer.cpp.o
 pctest: CMakeFiles/pctest.dir/src/main.cpp.o
+pctest: CMakeFiles/pctest.dir/src/ICPViewer.cpp.o
 pctest: CMakeFiles/pctest.dir/pctest_automoc.cpp.o
 pctest: CMakeFiles/pctest.dir/build.make
 pctest: /usr/lib/x86_64-linux-gnu/libboost_system.so
@@ -353,11 +379,7 @@ pctest: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
 pctest: /usr/lib/x86_64-linux-gnu/libboost_regex.so
 pctest: /usr/lib/x86_64-linux-gnu/libpthread.so
 pctest: /usr/lib/x86_64-linux-gnu/libpcl_common.so
-pctest: /opt/opencv-2.4.13/lib/libopencv_videostab.so.2.4.13
 pctest: /opt/opencv-2.4.13/lib/libopencv_ts.a
-pctest: /opt/opencv-2.4.13/lib/libopencv_superres.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_stitching.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_contrib.so.2.4.13
 pctest: /usr/lib/x86_64-linux-gnu/libz.so
 pctest: /usr/lib/x86_64-linux-gnu/libfreetype.so
 pctest: /usr/lib/x86_64-linux-gnu/libjpeg.so
@@ -382,25 +404,7 @@ pctest: /usr/lib/x86_64-linux-gnu/libogg.so
 pctest: /usr/lib/x86_64-linux-gnu/libpython2.7.so
 pctest: /usr/lib/x86_64-linux-gnu/libvtkRenderingExternal-6.2.so.6.2.0
 pctest: ../lib/libicp_algo.so
-pctest: /opt/opencv-2.4.13/lib/libopencv_nonfree.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_ocl.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_gpu.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_photo.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_objdetect.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_legacy.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_video.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_ml.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_calib3d.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_features2d.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_highgui.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_imgproc.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_flann.so.2.4.13
-pctest: /opt/opencv-2.4.13/lib/libopencv_core.so.2.4.13
-pctest: /usr/local/cuda/lib64/libcudart.so
-pctest: /usr/local/cuda/lib64/libnppc.so
-pctest: /usr/local/cuda/lib64/libnppi.so
-pctest: /usr/local/cuda/lib64/libnpps.so
-pctest: /usr/local/cuda/lib64/libcufft.so
+pctest: ../lib/libsuper4pcs_algo.a
 pctest: /usr/lib/x86_64-linux-gnu/libvtkImagingStencil-6.2.so.6.2.0
 pctest: /usr/lib/x86_64-linux-gnu/libvtkIOParallelNetCDF-6.2.so.6.2.0
 pctest: /usr/lib/x86_64-linux-gnu/libvtkLocalExample-6.2.so.6.2.0
@@ -629,8 +633,33 @@ pctest: /usr/lib/x86_64-linux-gnu/libsz.so
 pctest: /usr/lib/x86_64-linux-gnu/libdl.so
 pctest: /usr/lib/x86_64-linux-gnu/libm.so
 pctest: /usr/lib/x86_64-linux-gnu/libz.so
+pctest: ../lib/libsuper4pcs_io.a
+pctest: /opt/opencv-2.4.13/lib/libopencv_videostab.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_ts.a
+pctest: /opt/opencv-2.4.13/lib/libopencv_superres.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_stitching.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_contrib.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_nonfree.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_ocl.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_gpu.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_photo.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_objdetect.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_legacy.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_video.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_ml.so.2.4.13
+pctest: /usr/local/cuda/lib64/libcufft.so
+pctest: /opt/opencv-2.4.13/lib/libopencv_calib3d.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_features2d.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_highgui.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_imgproc.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_flann.so.2.4.13
+pctest: /opt/opencv-2.4.13/lib/libopencv_core.so.2.4.13
+pctest: /usr/local/cuda/lib64/libcudart.so
+pctest: /usr/local/cuda/lib64/libnppc.so
+pctest: /usr/local/cuda/lib64/libnppi.so
+pctest: /usr/local/cuda/lib64/libnpps.so
 pctest: CMakeFiles/pctest.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable pctest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable pctest"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pctest.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -640,6 +669,7 @@ CMakeFiles/pctest.dir/build: pctest
 
 CMakeFiles/pctest.dir/requires: CMakeFiles/pctest.dir/src/pclviewer.cpp.o.requires
 CMakeFiles/pctest.dir/requires: CMakeFiles/pctest.dir/src/main.cpp.o.requires
+CMakeFiles/pctest.dir/requires: CMakeFiles/pctest.dir/src/ICPViewer.cpp.o.requires
 CMakeFiles/pctest.dir/requires: CMakeFiles/pctest.dir/pctest_automoc.cpp.o.requires
 
 .PHONY : CMakeFiles/pctest.dir/requires

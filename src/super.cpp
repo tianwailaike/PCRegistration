@@ -2,22 +2,53 @@
 using namespace pcregistration;
 super::super()
 {
-  init();
+  input1 = "/home/ubuntu/lyc2017/Super4PCS/models/bunny.obj";
+  input2 = "/home/ubuntu/lyc2017/Super4PCS/models/bunny_data.obj";
+  init_super(input1,input2);
   
 }
 super::~super()
 {
   
 }
+//convert from P3D to PCL pointcloud
+void super::P3D2PCL(vector<Point3D>& set, PointCloud& pc)
+{
+  if(set[0].hasColor())
+   for(size_t i = 0;i<set.size();i++)
+    {
+      pc->points[i].x = set[i].x();
+      pc->points[i].y = set[i].y();
+      pc->points[i].z = set[i].z();
+      pc->points[i].r = set[i].rgb().coeffRef(0);
+      pc->points[i].g = set[i].rgb().coeffRef(1);
+      pc->points[i].b = set[i].rgb().coeffRef(2);
+    }
+  else 
+    for(size_t i=0;i<set.size();i++)
+    {
+      pc->points[i].x = set[i].x();
+      pc->points[i].y = set[i].y();
+      pc->points[i].z = set[i].z();
+      pc->points[i].r = 255;
+      pc->points[i].g = 255;
+      pc->points[i].b = 255;
+    }
+    
+}
 
-void super::init()
+void super::init_super(string refpath, string curpath)
 {
 //First input
-   input1 = "/home/ubuntu/lyc2017/Super4PCS/models/bunny.obj";
-
+  if(refpath.empty())
+     input1 = "/home/ubuntu/lyc2017/Super4PCS/models/bunny.obj";
+  else
+     input1 = refpath;
 // Second input.
-   input2 = "/home/ubuntu/lyc2017/Super4PCS/models/bunny_data.obj";
-
+  if(curpath.empty()) 
+     input2 = "/home/ubuntu/lyc2017/Super4PCS/models/bunny_data.obj";
+  else
+     input2 = curpath;
 // Output. The transformed second input.
    output = "/home/ubuntu/lyc2017/Super4PCS/T2.obj";
 // Default name for the '.obj' output file
@@ -393,12 +424,12 @@ int super::run_super(int argc, char** argv)
   return 1;
 }
 
-int main(int argc, char** argv)
-{
-  super superpc;
-  if(argc>1)
-    superpc.run_super(argc,argv);
-  else
-    superpc.run_super();
-  return 1;
-}
+// int main(int argc, char** argv)
+// {
+//   super superpc;
+//   if(argc>1)
+//     superpc.run_super(argc,argv);
+//   else
+//     superpc.run_super();
+//   return 1;
+// }

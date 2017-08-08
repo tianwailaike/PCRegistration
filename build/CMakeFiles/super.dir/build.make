@@ -116,7 +116,7 @@ super_EXTERNAL_OBJECTS =
 super: CMakeFiles/super.dir/src/super.cpp.o
 super: CMakeFiles/super.dir/super_automoc.cpp.o
 super: CMakeFiles/super.dir/build.make
-super: ../lib/libsuper4pcs_algo.so
+super: ../lib/libsuper4pcs_algo.a
 super: ../lib/libsuper4pcs_io.a
 super: /opt/opencv-2.4.13/lib/libopencv_videostab.so.2.4.13
 super: /opt/opencv-2.4.13/lib/libopencv_ts.a

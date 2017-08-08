@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/ubuntu/lyc2017/pcp/PCRegistration/build/pctest_automoc.cpp" "/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/pctest.dir/pctest_automoc.cpp.o"
+  "/home/ubuntu/lyc2017/pcp/PCRegistration/src/ICPViewer.cpp" "/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/pctest.dir/src/ICPViewer.cpp.o"
   "/home/ubuntu/lyc2017/pcp/PCRegistration/src/main.cpp" "/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/pctest.dir/src/main.cpp.o"
   "/home/ubuntu/lyc2017/pcp/PCRegistration/src/pclviewer.cpp" "/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/pctest.dir/src/pclviewer.cpp.o"
   )
@@ -12,6 +13,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
+  "DEBUG"
   "DISABLE_PCAP"
   "DISABLE_PNG"
   "EIGEN_USE_NEW_STDVECTOR"
@@ -19,7 +21,6 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
   "FLANN_STATIC"
   "QT_CORE_LIB"
   "QT_GUI_LIB"
-  "QT_NO_DEBUG"
   "QT_WIDGETS_LIB"
   "vtkFiltersFlowPaths_AUTOINIT=1(vtkFiltersParallelFlowPaths)"
   "vtkIOExodus_AUTOINIT=1(vtkIOParallelExodus)"
@@ -66,11 +67,14 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/x86_64-linux-gnu/qt5/QtGui"
   "/usr/include/x86_64-linux-gnu/qt5/QtCore"
   "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64"
+  "../src/super4pcs/accelerators"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/icp_algo.dir/DependInfo.cmake"
+  "/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/super4pcs_algo.dir/DependInfo.cmake"
+  "/home/ubuntu/lyc2017/pcp/PCRegistration/build/src/super4pcs/io/CMakeFiles/super4pcs_io.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.
