@@ -118,6 +118,7 @@ private:
     
   double distance;
   int npoints;
+  bool is_viewer_initiate;
  // QPushButton 
 
 };

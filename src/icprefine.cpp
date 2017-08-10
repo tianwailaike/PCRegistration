@@ -341,7 +341,7 @@ pcl::visualization::PCLVisualizer::Ptr icprefine::init_viewer()
   int v1(0);
   viewer->createViewPort(0.0,0.0,0.5,1.0,v1);
   viewer->addCoordinateSystem(1.0,"left",v1);
-  viewer->setBackgroundColor(0,0,0,v1);
+  viewer->setBackgroundColor(0.5,0.5,0.5,v1);
   viewer->addText("left",10,10,"v1 text",v1);
   
   pcl::visualization::PointCloudColorHandlerCustom<PointT>
@@ -442,7 +442,7 @@ void icprefine::init_viewer(pcl::visualization::PCLVisualizer::Ptr viewer)
   int v1(0);
   viewer->createViewPort(0.0,0.0,0.5,1.0,v1);
   viewer->addCoordinateSystem(1.0,"left",v1);
-  viewer->setBackgroundColor(0,0,0,v1);
+  viewer->setBackgroundColor(0.5,0.5,0.5,v1);
   viewer->addText("left",10,10,"v1 text",v1);
   
   pcl::visualization::PointCloudColorHandlerCustom<PointT>

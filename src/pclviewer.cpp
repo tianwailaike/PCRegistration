@@ -26,7 +26,9 @@ PCLViewer::createMainWidget()
   //mainWidget->setLayout(hlayout);
   //setCentralWidget(mainWidget);
   stacked_widget->addWidget(icpviewer);
+  //stacked_widget->insertWidget(0,icpviewer);
   stacked_widget->addWidget(superviewer);
+  //stacked_widget->insertWidget(1,superviewer);
   stacked_widget->setCurrentIndex(0);
   setCentralWidget(stacked_widget);
   
@@ -69,21 +71,24 @@ PCLViewer::initialize()
 void 
 PCLViewer::supereg_slot()
 {
+    std::cout<<"icpviewer current index is :"<<stacked_widget->indexOf(icpviewer)<<std::endl;
     stacked_widget->setCurrentIndex(1);
-    stacked_widget->removeWidget(superviewer);
-    stacked_widget->insertWidget(1,superviewer);
+   // stacked_widget->removeWidget(superviewer);
+    //stacked_widget->insertWidget(1,superviewer);
     std::cout<<"switch superviewer!"<<std::endl;
-  
+    std::cout<<"superviewer current index is :"<<stacked_widget->indexOf(superviewer)<<std::endl;
+
 }
 
 void
 PCLViewer::icp_slot()
 {
+    std::cout<<"superviewer current index is :"<<stacked_widget->indexOf(superviewer)<<std::endl;
     stacked_widget->setCurrentIndex(0);
-    stacked_widget->removeWidget(icpviewer);
-    stacked_widget->insertWidget(0,icpviewer);
+   // stacked_widget->removeWidget(icpviewer);
+   // stacked_widget->insertWidget(0,icpviewer);
     std::cout<<"switch icpviewer!"<<std::endl;
-  
+    std::cout<<"icpviewer current index is :"<<stacked_widget->indexOf(icpviewer)<<std::endl;  
 }
 
 bool 

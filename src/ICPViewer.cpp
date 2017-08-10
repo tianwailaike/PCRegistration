@@ -10,6 +10,7 @@ ICPViewer::ICPViewer(QWidget *parent):
   datapath  = "/home/ubuntu/lyc2017/pcp/icptest/models/bunny_data.obj";
   icp = icprefine::GetInstance();
   //icp->init_icp(modelpath,datapath);
+  is_viewer_initiate = false;
   createMainWidget();
 
 
@@ -30,7 +31,11 @@ ICPViewer::createMainWidget()
 void 
 ICPViewer::init_viewer()
 {
-  viewer.reset (new pcl::visualization::PCLVisualizer ("viewer", false)); 
+  if(is_viewer_initiate==false)
+  {
+    viewer.reset (new pcl::visualization::PCLVisualizer ("viewer", false)); 
+    std::cout<<"I am initialized!"<<std::endl;
+    is_viewer_initiate = true;
   icp->init_viewer(viewer);
   std::cout<<"0"<<std::endl;
   qvtkWidget->SetRenderWindow(viewer->getRenderWindow ());
@@ -45,6 +50,23 @@ ICPViewer::init_viewer()
   std::cout<<"2"<<std::endl;
   viewer->resetCamera ();
   qvtkWidget->update ();
+  }
+  else
+  {
+  finaltrans = Eigen::Matrix4f::Identity();
+  std::cout<<"This is the final mat result:\n"<<finaltrans<<std::endl;
+  printf ("DONE\n");
+  //PointCloud tem = icp.getResultCloud();
+   viewer->updatePointCloud(icp->getref(),"original_cloud");
+  viewer->updatePointCloud(icp->getref(),"reference_cloud");
+  viewer->updatePointCloud(icp->getdata(),"current_cloud");
+  viewer->updatePointCloud(icp->getResultCloud(),"registered_cloud");
+  
+  std::stringstream r;
+  r << 0;
+  viewer->updateText(r.str(),0,0,"show_result");
+  qvtkWidget->update();
+  }
 }
 
 void
@@ -84,7 +106,7 @@ ICPViewer::createSliders()
 	
 	lcdNumber_error = new QLCDNumber(panelWidget);
         lcdNumber_error->setFixedSize(QSize(180,40));
-	lcdNumber_error->setDigitCount(5);
+	lcdNumber_error->setDigitCount(8);
         lcdNumber_error->setSegmentStyle(QLCDNumber::Flat);
         lcdNumber_error->setProperty("doubleValue", QVariant(static_cast<double>(3.0000)));
         
@@ -248,13 +270,13 @@ void ICPViewer::saveButtonPressed()
   
   //save the final transformation
   std::ofstream save;
-  save.open("/home/ubuntu/finaltans.txt",std::ios::out|std::ios::trunc);
+  save.open("./finaltans.txt",std::ios::out|std::ios::trunc);
   std::stringstream r;
   r<<finaltrans;
   save<<r.str();
   save.close();
   std::cout<<"save done!"<<std::endl;
-  std::string filepath = "/home/ubuntu/result.ply";
+  std::string filepath = "./result.ply";
   icp->saveObject(filepath);
 }
 void ICPViewer::distance_ValueChanged(double value)
