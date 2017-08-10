@@ -252,45 +252,6 @@ Nightly/fast:
 .PHONY : Nightly/fast
 
 #=============================================================================
-# Target rules for targets named ExperimentalTest
-
-# Build rule for target.
-ExperimentalTest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ExperimentalTest
-.PHONY : ExperimentalTest
-
-# fast build rule for target.
-ExperimentalTest/fast:
-	$(MAKE) -f CMakeFiles/ExperimentalTest.dir/build.make CMakeFiles/ExperimentalTest.dir/build
-.PHONY : ExperimentalTest/fast
-
-#=============================================================================
-# Target rules for targets named NightlyConfigure
-
-# Build rule for target.
-NightlyConfigure: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 NightlyConfigure
-.PHONY : NightlyConfigure
-
-# fast build rule for target.
-NightlyConfigure/fast:
-	$(MAKE) -f CMakeFiles/NightlyConfigure.dir/build.make CMakeFiles/NightlyConfigure.dir/build
-.PHONY : NightlyConfigure/fast
-
-#=============================================================================
-# Target rules for targets named buildtests
-
-# Build rule for target.
-buildtests: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 buildtests
-.PHONY : buildtests
-
-# fast build rule for target.
-buildtests/fast:
-	$(MAKE) -f CMakeFiles/buildtests.dir/build.make CMakeFiles/buildtests.dir/build
-.PHONY : buildtests/fast
-
-#=============================================================================
 # Target rules for targets named super4pcs_algo
 
 # Build rule for target.
@@ -354,6 +315,19 @@ NightlySubmit: cmake_check_build_system
 NightlySubmit/fast:
 	$(MAKE) -f CMakeFiles/NightlySubmit.dir/build.make CMakeFiles/NightlySubmit.dir/build
 .PHONY : NightlySubmit/fast
+
+#=============================================================================
+# Target rules for targets named buildtests
+
+# Build rule for target.
+buildtests: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 buildtests
+.PHONY : buildtests
+
+# fast build rule for target.
+buildtests/fast:
+	$(MAKE) -f CMakeFiles/buildtests.dir/build.make CMakeFiles/buildtests.dir/build
+.PHONY : buildtests/fast
 
 #=============================================================================
 # Target rules for targets named ContinuousCoverage
@@ -447,32 +421,6 @@ NightlyTest/fast:
 .PHONY : NightlyTest/fast
 
 #=============================================================================
-# Target rules for targets named NightlyMemoryCheck
-
-# Build rule for target.
-NightlyMemoryCheck: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 NightlyMemoryCheck
-.PHONY : NightlyMemoryCheck
-
-# fast build rule for target.
-NightlyMemoryCheck/fast:
-	$(MAKE) -f CMakeFiles/NightlyMemoryCheck.dir/build.make CMakeFiles/NightlyMemoryCheck.dir/build
-.PHONY : NightlyMemoryCheck/fast
-
-#=============================================================================
-# Target rules for targets named icprefine
-
-# Build rule for target.
-icprefine: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 icprefine
-.PHONY : icprefine
-
-# fast build rule for target.
-icprefine/fast:
-	$(MAKE) -f CMakeFiles/icprefine.dir/build.make CMakeFiles/icprefine.dir/build
-.PHONY : icprefine/fast
-
-#=============================================================================
 # Target rules for targets named NightlyStart
 
 # Build rule for target.
@@ -484,6 +432,19 @@ NightlyStart: cmake_check_build_system
 NightlyStart/fast:
 	$(MAKE) -f CMakeFiles/NightlyStart.dir/build.make CMakeFiles/NightlyStart.dir/build
 .PHONY : NightlyStart/fast
+
+#=============================================================================
+# Target rules for targets named NightlyMemoryCheck
+
+# Build rule for target.
+NightlyMemoryCheck: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 NightlyMemoryCheck
+.PHONY : NightlyMemoryCheck
+
+# fast build rule for target.
+NightlyMemoryCheck/fast:
+	$(MAKE) -f CMakeFiles/NightlyMemoryCheck.dir/build.make CMakeFiles/NightlyMemoryCheck.dir/build
+.PHONY : NightlyMemoryCheck/fast
 
 #=============================================================================
 # Target rules for targets named NightlyMemCheck
@@ -577,6 +538,32 @@ ExperimentalBuild/fast:
 .PHONY : ExperimentalBuild/fast
 
 #=============================================================================
+# Target rules for targets named NightlyConfigure
+
+# Build rule for target.
+NightlyConfigure: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 NightlyConfigure
+.PHONY : NightlyConfigure
+
+# fast build rule for target.
+NightlyConfigure/fast:
+	$(MAKE) -f CMakeFiles/NightlyConfigure.dir/build.make CMakeFiles/NightlyConfigure.dir/build
+.PHONY : NightlyConfigure/fast
+
+#=============================================================================
+# Target rules for targets named ExperimentalTest
+
+# Build rule for target.
+ExperimentalTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ExperimentalTest
+.PHONY : ExperimentalTest
+
+# fast build rule for target.
+ExperimentalTest/fast:
+	$(MAKE) -f CMakeFiles/ExperimentalTest.dir/build.make CMakeFiles/ExperimentalTest.dir/build
+.PHONY : ExperimentalTest/fast
+
+#=============================================================================
 # Target rules for targets named pctest_automoc
 
 # Build rule for target.
@@ -627,19 +614,6 @@ super4pcs_automoc: cmake_check_build_system
 super4pcs_automoc/fast:
 	$(MAKE) -f CMakeFiles/super4pcs_automoc.dir/build.make CMakeFiles/super4pcs_automoc.dir/build
 .PHONY : super4pcs_automoc/fast
-
-#=============================================================================
-# Target rules for targets named icprefine_automoc
-
-# Build rule for target.
-icprefine_automoc: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 icprefine_automoc
-.PHONY : icprefine_automoc
-
-# fast build rule for target.
-icprefine_automoc/fast:
-	$(MAKE) -f CMakeFiles/icprefine_automoc.dir/build.make CMakeFiles/icprefine_automoc.dir/build
-.PHONY : icprefine_automoc/fast
 
 #=============================================================================
 # Target rules for targets named super4pcs_io
@@ -707,33 +681,6 @@ icp_algo_automoc.cpp.s:
 	$(MAKE) -f CMakeFiles/icp_algo.dir/build.make CMakeFiles/icp_algo.dir/icp_algo_automoc.cpp.s
 .PHONY : icp_algo_automoc.cpp.s
 
-icprefine_automoc.o: icprefine_automoc.cpp.o
-
-.PHONY : icprefine_automoc.o
-
-# target to build an object file
-icprefine_automoc.cpp.o:
-	$(MAKE) -f CMakeFiles/icprefine.dir/build.make CMakeFiles/icprefine.dir/icprefine_automoc.cpp.o
-.PHONY : icprefine_automoc.cpp.o
-
-icprefine_automoc.i: icprefine_automoc.cpp.i
-
-.PHONY : icprefine_automoc.i
-
-# target to preprocess a source file
-icprefine_automoc.cpp.i:
-	$(MAKE) -f CMakeFiles/icprefine.dir/build.make CMakeFiles/icprefine.dir/icprefine_automoc.cpp.i
-.PHONY : icprefine_automoc.cpp.i
-
-icprefine_automoc.s: icprefine_automoc.cpp.s
-
-.PHONY : icprefine_automoc.s
-
-# target to generate assembly for a file
-icprefine_automoc.cpp.s:
-	$(MAKE) -f CMakeFiles/icprefine.dir/build.make CMakeFiles/icprefine.dir/icprefine_automoc.cpp.s
-.PHONY : icprefine_automoc.cpp.s
-
 pctest_automoc.o: pctest_automoc.cpp.o
 
 .PHONY : pctest_automoc.o
@@ -795,7 +742,6 @@ src/icprefine.o: src/icprefine.cpp.o
 # target to build an object file
 src/icprefine.cpp.o:
 	$(MAKE) -f CMakeFiles/icp_algo.dir/build.make CMakeFiles/icp_algo.dir/src/icprefine.cpp.o
-	$(MAKE) -f CMakeFiles/icprefine.dir/build.make CMakeFiles/icprefine.dir/src/icprefine.cpp.o
 .PHONY : src/icprefine.cpp.o
 
 src/icprefine.i: src/icprefine.cpp.i
@@ -805,7 +751,6 @@ src/icprefine.i: src/icprefine.cpp.i
 # target to preprocess a source file
 src/icprefine.cpp.i:
 	$(MAKE) -f CMakeFiles/icp_algo.dir/build.make CMakeFiles/icp_algo.dir/src/icprefine.cpp.i
-	$(MAKE) -f CMakeFiles/icprefine.dir/build.make CMakeFiles/icprefine.dir/src/icprefine.cpp.i
 .PHONY : src/icprefine.cpp.i
 
 src/icprefine.s: src/icprefine.cpp.s
@@ -815,7 +760,6 @@ src/icprefine.s: src/icprefine.cpp.s
 # target to generate assembly for a file
 src/icprefine.cpp.s:
 	$(MAKE) -f CMakeFiles/icp_algo.dir/build.make CMakeFiles/icp_algo.dir/src/icprefine.cpp.s
-	$(MAKE) -f CMakeFiles/icprefine.dir/build.make CMakeFiles/icprefine.dir/src/icprefine.cpp.s
 .PHONY : src/icprefine.cpp.s
 
 src/icprefine/error.o: src/icprefine/error.cpp.o
@@ -1223,6 +1167,33 @@ src/super4pcs/super4pcs_test.cc.s:
 	$(MAKE) -f CMakeFiles/super4pcs.dir/build.make CMakeFiles/super4pcs.dir/src/super4pcs/super4pcs_test.cc.s
 .PHONY : src/super4pcs/super4pcs_test.cc.s
 
+src/superViewer.o: src/superViewer.cpp.o
+
+.PHONY : src/superViewer.o
+
+# target to build an object file
+src/superViewer.cpp.o:
+	$(MAKE) -f CMakeFiles/pctest.dir/build.make CMakeFiles/pctest.dir/src/superViewer.cpp.o
+.PHONY : src/superViewer.cpp.o
+
+src/superViewer.i: src/superViewer.cpp.i
+
+.PHONY : src/superViewer.i
+
+# target to preprocess a source file
+src/superViewer.cpp.i:
+	$(MAKE) -f CMakeFiles/pctest.dir/build.make CMakeFiles/pctest.dir/src/superViewer.cpp.i
+.PHONY : src/superViewer.cpp.i
+
+src/superViewer.s: src/superViewer.cpp.s
+
+.PHONY : src/superViewer.s
+
+# target to generate assembly for a file
+src/superViewer.cpp.s:
+	$(MAKE) -f CMakeFiles/pctest.dir/build.make CMakeFiles/pctest.dir/src/superViewer.cpp.s
+.PHONY : src/superViewer.cpp.s
+
 super4pcs_algo_automoc.o: super4pcs_algo_automoc.cpp.o
 
 .PHONY : super4pcs_algo_automoc.o
@@ -1295,14 +1266,12 @@ help:
 	@echo "... Continuous"
 	@echo "... ContinuousMemCheck"
 	@echo "... Nightly"
-	@echo "... ExperimentalTest"
-	@echo "... NightlyConfigure"
-	@echo "... buildtests"
 	@echo "... super4pcs_algo"
 	@echo "... icp_algo"
 	@echo "... ExperimentalSubmit"
 	@echo "... Experimental"
 	@echo "... NightlySubmit"
+	@echo "... buildtests"
 	@echo "... ContinuousCoverage"
 	@echo "... check"
 	@echo "... super4pcs"
@@ -1310,9 +1279,8 @@ help:
 	@echo "... NightlyUpdate"
 	@echo "... NightlyBuild"
 	@echo "... NightlyTest"
-	@echo "... NightlyMemoryCheck"
-	@echo "... icprefine"
 	@echo "... NightlyStart"
+	@echo "... NightlyMemoryCheck"
 	@echo "... NightlyMemCheck"
 	@echo "... ContinuousConfigure"
 	@echo "... NightlyCoverage"
@@ -1321,20 +1289,18 @@ help:
 	@echo "... ExperimentalConfigure"
 	@echo "... ExperimentalCoverage"
 	@echo "... ExperimentalBuild"
+	@echo "... NightlyConfigure"
+	@echo "... ExperimentalTest"
 	@echo "... pctest_automoc"
 	@echo "... super4pcs_algo_automoc"
 	@echo "... icp_algo_automoc"
 	@echo "... super4pcs_automoc"
-	@echo "... icprefine_automoc"
 	@echo "... super4pcs_io"
 	@echo "... super4pcs_io_automoc"
 	@echo "... super4pcs_utils_IDE"
 	@echo "... icp_algo_automoc.o"
 	@echo "... icp_algo_automoc.i"
 	@echo "... icp_algo_automoc.s"
-	@echo "... icprefine_automoc.o"
-	@echo "... icprefine_automoc.i"
-	@echo "... icprefine_automoc.s"
 	@echo "... pctest_automoc.o"
 	@echo "... pctest_automoc.i"
 	@echo "... pctest_automoc.s"
@@ -1389,6 +1355,9 @@ help:
 	@echo "... src/super4pcs/super4pcs_test.o"
 	@echo "... src/super4pcs/super4pcs_test.i"
 	@echo "... src/super4pcs/super4pcs_test.s"
+	@echo "... src/superViewer.o"
+	@echo "... src/superViewer.i"
+	@echo "... src/superViewer.s"
 	@echo "... super4pcs_algo_automoc.o"
 	@echo "... super4pcs_algo_automoc.i"
 	@echo "... super4pcs_algo_automoc.s"

@@ -8,7 +8,7 @@ ICPViewer::ICPViewer(QWidget *parent):
         //std::string modelpath = "/home/ubuntu/points1.ply";
         //std::string datapath = "/home/ubuntu/points2.ply";
   datapath  = "/home/ubuntu/lyc2017/pcp/icptest/models/bunny_data.obj";
-  icp = icprefine::GetInsance();
+  icp = icprefine::GetInstance();
   //icp->init_icp(modelpath,datapath);
   createMainWidget();
 
@@ -22,7 +22,7 @@ void
 ICPViewer::createMainWidget()
 {
  
-  initialize();
+    initialize();
   //init_viewer();
   
   

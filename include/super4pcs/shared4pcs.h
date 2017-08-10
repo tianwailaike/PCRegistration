@@ -61,6 +61,9 @@ class Point3D {
   inline const VectorType& rgb() const { return rgb_; }
 
   inline const VectorType& normal() const { return normal_; }
+  inline void set_pos(const VectorType& pos){
+    pos_ = pos;
+  }
   inline void set_rgb(const VectorType& rgb) {
       rgb_ = rgb;
   }

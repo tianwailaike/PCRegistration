@@ -69,7 +69,7 @@ CMakeFiles/pctest.dir/all: src/super4pcs/io/CMakeFiles/super4pcs_io.dir/all
 CMakeFiles/pctest.dir/all: CMakeFiles/pctest_automoc.dir/all
 	$(MAKE) -f CMakeFiles/pctest.dir/build.make CMakeFiles/pctest.dir/depend
 	$(MAKE) -f CMakeFiles/pctest.dir/build.make CMakeFiles/pctest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=17,18,19,20,21,22 "Built target pctest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=13,14,15,16,17,18,19 "Built target pctest"
 .PHONY : CMakeFiles/pctest.dir/all
 
 # Include target in all.
@@ -79,7 +79,7 @@ all: CMakeFiles/pctest.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/pctest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 30
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 31
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/pctest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
 .PHONY : CMakeFiles/pctest.dir/rule
@@ -388,102 +388,6 @@ clean: CMakeFiles/Nightly.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/ExperimentalTest.dir
-
-# All Build rule for target.
-CMakeFiles/ExperimentalTest.dir/all:
-	$(MAKE) -f CMakeFiles/ExperimentalTest.dir/build.make CMakeFiles/ExperimentalTest.dir/depend
-	$(MAKE) -f CMakeFiles/ExperimentalTest.dir/build.make CMakeFiles/ExperimentalTest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num= "Built target ExperimentalTest"
-.PHONY : CMakeFiles/ExperimentalTest.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/ExperimentalTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ExperimentalTest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
-.PHONY : CMakeFiles/ExperimentalTest.dir/rule
-
-# Convenience name for target.
-ExperimentalTest: CMakeFiles/ExperimentalTest.dir/rule
-
-.PHONY : ExperimentalTest
-
-# clean rule for target.
-CMakeFiles/ExperimentalTest.dir/clean:
-	$(MAKE) -f CMakeFiles/ExperimentalTest.dir/build.make CMakeFiles/ExperimentalTest.dir/clean
-.PHONY : CMakeFiles/ExperimentalTest.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/ExperimentalTest.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/NightlyConfigure.dir
-
-# All Build rule for target.
-CMakeFiles/NightlyConfigure.dir/all:
-	$(MAKE) -f CMakeFiles/NightlyConfigure.dir/build.make CMakeFiles/NightlyConfigure.dir/depend
-	$(MAKE) -f CMakeFiles/NightlyConfigure.dir/build.make CMakeFiles/NightlyConfigure.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num= "Built target NightlyConfigure"
-.PHONY : CMakeFiles/NightlyConfigure.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/NightlyConfigure.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/NightlyConfigure.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
-.PHONY : CMakeFiles/NightlyConfigure.dir/rule
-
-# Convenience name for target.
-NightlyConfigure: CMakeFiles/NightlyConfigure.dir/rule
-
-.PHONY : NightlyConfigure
-
-# clean rule for target.
-CMakeFiles/NightlyConfigure.dir/clean:
-	$(MAKE) -f CMakeFiles/NightlyConfigure.dir/build.make CMakeFiles/NightlyConfigure.dir/clean
-.PHONY : CMakeFiles/NightlyConfigure.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/NightlyConfigure.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/buildtests.dir
-
-# All Build rule for target.
-CMakeFiles/buildtests.dir/all:
-	$(MAKE) -f CMakeFiles/buildtests.dir/build.make CMakeFiles/buildtests.dir/depend
-	$(MAKE) -f CMakeFiles/buildtests.dir/build.make CMakeFiles/buildtests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num= "Built target buildtests"
-.PHONY : CMakeFiles/buildtests.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/buildtests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/buildtests.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
-.PHONY : CMakeFiles/buildtests.dir/rule
-
-# Convenience name for target.
-buildtests: CMakeFiles/buildtests.dir/rule
-
-.PHONY : buildtests
-
-# clean rule for target.
-CMakeFiles/buildtests.dir/clean:
-	$(MAKE) -f CMakeFiles/buildtests.dir/build.make CMakeFiles/buildtests.dir/clean
-.PHONY : CMakeFiles/buildtests.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/buildtests.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/super4pcs_algo.dir
 
 # All Build rule for target.
@@ -491,7 +395,7 @@ CMakeFiles/super4pcs_algo.dir/all: src/super4pcs/io/CMakeFiles/super4pcs_io.dir/
 CMakeFiles/super4pcs_algo.dir/all: CMakeFiles/super4pcs_algo_automoc.dir/all
 	$(MAKE) -f CMakeFiles/super4pcs_algo.dir/build.make CMakeFiles/super4pcs_algo.dir/depend
 	$(MAKE) -f CMakeFiles/super4pcs_algo.dir/build.make CMakeFiles/super4pcs_algo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=27,28,29,30,31,32 "Built target super4pcs_algo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=24,25,26,27,28,29 "Built target super4pcs_algo"
 .PHONY : CMakeFiles/super4pcs_algo.dir/all
 
 # Include target in all.
@@ -655,6 +559,38 @@ clean: CMakeFiles/NightlySubmit.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/buildtests.dir
+
+# All Build rule for target.
+CMakeFiles/buildtests.dir/all:
+	$(MAKE) -f CMakeFiles/buildtests.dir/build.make CMakeFiles/buildtests.dir/depend
+	$(MAKE) -f CMakeFiles/buildtests.dir/build.make CMakeFiles/buildtests.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num= "Built target buildtests"
+.PHONY : CMakeFiles/buildtests.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/buildtests.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/buildtests.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
+.PHONY : CMakeFiles/buildtests.dir/rule
+
+# Convenience name for target.
+buildtests: CMakeFiles/buildtests.dir/rule
+
+.PHONY : buildtests
+
+# clean rule for target.
+CMakeFiles/buildtests.dir/clean:
+	$(MAKE) -f CMakeFiles/buildtests.dir/build.make CMakeFiles/buildtests.dir/clean
+.PHONY : CMakeFiles/buildtests.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/buildtests.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/ContinuousCoverage.dir
 
 # All Build rule for target.
@@ -727,7 +663,7 @@ CMakeFiles/super4pcs.dir/all: src/super4pcs/io/CMakeFiles/super4pcs_io.dir/all
 CMakeFiles/super4pcs.dir/all: CMakeFiles/super4pcs_automoc.dir/all
 	$(MAKE) -f CMakeFiles/super4pcs.dir/build.make CMakeFiles/super4pcs.dir/depend
 	$(MAKE) -f CMakeFiles/super4pcs.dir/build.make CMakeFiles/super4pcs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=24,25,26 "Built target super4pcs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=21,22,23 "Built target super4pcs"
 .PHONY : CMakeFiles/super4pcs.dir/all
 
 # Include target in all.
@@ -886,75 +822,6 @@ clean: CMakeFiles/NightlyTest.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/NightlyMemoryCheck.dir
-
-# All Build rule for target.
-CMakeFiles/NightlyMemoryCheck.dir/all:
-	$(MAKE) -f CMakeFiles/NightlyMemoryCheck.dir/build.make CMakeFiles/NightlyMemoryCheck.dir/depend
-	$(MAKE) -f CMakeFiles/NightlyMemoryCheck.dir/build.make CMakeFiles/NightlyMemoryCheck.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num= "Built target NightlyMemoryCheck"
-.PHONY : CMakeFiles/NightlyMemoryCheck.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/NightlyMemoryCheck.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/NightlyMemoryCheck.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
-.PHONY : CMakeFiles/NightlyMemoryCheck.dir/rule
-
-# Convenience name for target.
-NightlyMemoryCheck: CMakeFiles/NightlyMemoryCheck.dir/rule
-
-.PHONY : NightlyMemoryCheck
-
-# clean rule for target.
-CMakeFiles/NightlyMemoryCheck.dir/clean:
-	$(MAKE) -f CMakeFiles/NightlyMemoryCheck.dir/build.make CMakeFiles/NightlyMemoryCheck.dir/clean
-.PHONY : CMakeFiles/NightlyMemoryCheck.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/NightlyMemoryCheck.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/icprefine.dir
-
-# All Build rule for target.
-CMakeFiles/icprefine.dir/all: CMakeFiles/icprefine_automoc.dir/all
-	$(MAKE) -f CMakeFiles/icprefine.dir/build.make CMakeFiles/icprefine.dir/depend
-	$(MAKE) -f CMakeFiles/icprefine.dir/build.make CMakeFiles/icprefine.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=13,14,15 "Built target icprefine"
-.PHONY : CMakeFiles/icprefine.dir/all
-
-# Include target in all.
-all: CMakeFiles/icprefine.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/icprefine.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/icprefine.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
-.PHONY : CMakeFiles/icprefine.dir/rule
-
-# Convenience name for target.
-icprefine: CMakeFiles/icprefine.dir/rule
-
-.PHONY : icprefine
-
-# clean rule for target.
-CMakeFiles/icprefine.dir/clean:
-	$(MAKE) -f CMakeFiles/icprefine.dir/build.make CMakeFiles/icprefine.dir/clean
-.PHONY : CMakeFiles/icprefine.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/icprefine.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/NightlyStart.dir
 
 # All Build rule for target.
@@ -983,6 +850,38 @@ CMakeFiles/NightlyStart.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/NightlyStart.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/NightlyMemoryCheck.dir
+
+# All Build rule for target.
+CMakeFiles/NightlyMemoryCheck.dir/all:
+	$(MAKE) -f CMakeFiles/NightlyMemoryCheck.dir/build.make CMakeFiles/NightlyMemoryCheck.dir/depend
+	$(MAKE) -f CMakeFiles/NightlyMemoryCheck.dir/build.make CMakeFiles/NightlyMemoryCheck.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num= "Built target NightlyMemoryCheck"
+.PHONY : CMakeFiles/NightlyMemoryCheck.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/NightlyMemoryCheck.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/NightlyMemoryCheck.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
+.PHONY : CMakeFiles/NightlyMemoryCheck.dir/rule
+
+# Convenience name for target.
+NightlyMemoryCheck: CMakeFiles/NightlyMemoryCheck.dir/rule
+
+.PHONY : NightlyMemoryCheck
+
+# clean rule for target.
+CMakeFiles/NightlyMemoryCheck.dir/clean:
+	$(MAKE) -f CMakeFiles/NightlyMemoryCheck.dir/build.make CMakeFiles/NightlyMemoryCheck.dir/clean
+.PHONY : CMakeFiles/NightlyMemoryCheck.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/NightlyMemoryCheck.dir/clean
 
 .PHONY : clean
 
@@ -1211,13 +1110,77 @@ clean: CMakeFiles/ExperimentalBuild.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/NightlyConfigure.dir
+
+# All Build rule for target.
+CMakeFiles/NightlyConfigure.dir/all:
+	$(MAKE) -f CMakeFiles/NightlyConfigure.dir/build.make CMakeFiles/NightlyConfigure.dir/depend
+	$(MAKE) -f CMakeFiles/NightlyConfigure.dir/build.make CMakeFiles/NightlyConfigure.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num= "Built target NightlyConfigure"
+.PHONY : CMakeFiles/NightlyConfigure.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/NightlyConfigure.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/NightlyConfigure.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
+.PHONY : CMakeFiles/NightlyConfigure.dir/rule
+
+# Convenience name for target.
+NightlyConfigure: CMakeFiles/NightlyConfigure.dir/rule
+
+.PHONY : NightlyConfigure
+
+# clean rule for target.
+CMakeFiles/NightlyConfigure.dir/clean:
+	$(MAKE) -f CMakeFiles/NightlyConfigure.dir/build.make CMakeFiles/NightlyConfigure.dir/clean
+.PHONY : CMakeFiles/NightlyConfigure.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/NightlyConfigure.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/ExperimentalTest.dir
+
+# All Build rule for target.
+CMakeFiles/ExperimentalTest.dir/all:
+	$(MAKE) -f CMakeFiles/ExperimentalTest.dir/build.make CMakeFiles/ExperimentalTest.dir/depend
+	$(MAKE) -f CMakeFiles/ExperimentalTest.dir/build.make CMakeFiles/ExperimentalTest.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num= "Built target ExperimentalTest"
+.PHONY : CMakeFiles/ExperimentalTest.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/ExperimentalTest.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ExperimentalTest.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
+.PHONY : CMakeFiles/ExperimentalTest.dir/rule
+
+# Convenience name for target.
+ExperimentalTest: CMakeFiles/ExperimentalTest.dir/rule
+
+.PHONY : ExperimentalTest
+
+# clean rule for target.
+CMakeFiles/ExperimentalTest.dir/clean:
+	$(MAKE) -f CMakeFiles/ExperimentalTest.dir/build.make CMakeFiles/ExperimentalTest.dir/clean
+.PHONY : CMakeFiles/ExperimentalTest.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/ExperimentalTest.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/pctest_automoc.dir
 
 # All Build rule for target.
 CMakeFiles/pctest_automoc.dir/all:
 	$(MAKE) -f CMakeFiles/pctest_automoc.dir/build.make CMakeFiles/pctest_automoc.dir/depend
 	$(MAKE) -f CMakeFiles/pctest_automoc.dir/build.make CMakeFiles/pctest_automoc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=23 "Built target pctest_automoc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=20 "Built target pctest_automoc"
 .PHONY : CMakeFiles/pctest_automoc.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1249,7 +1212,7 @@ clean: CMakeFiles/pctest_automoc.dir/clean
 CMakeFiles/super4pcs_algo_automoc.dir/all:
 	$(MAKE) -f CMakeFiles/super4pcs_algo_automoc.dir/build.make CMakeFiles/super4pcs_algo_automoc.dir/depend
 	$(MAKE) -f CMakeFiles/super4pcs_algo_automoc.dir/build.make CMakeFiles/super4pcs_algo_automoc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=33 "Built target super4pcs_algo_automoc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=30 "Built target super4pcs_algo_automoc"
 .PHONY : CMakeFiles/super4pcs_algo_automoc.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1313,7 +1276,7 @@ clean: CMakeFiles/icp_algo_automoc.dir/clean
 CMakeFiles/super4pcs_automoc.dir/all:
 	$(MAKE) -f CMakeFiles/super4pcs_automoc.dir/build.make CMakeFiles/super4pcs_automoc.dir/depend
 	$(MAKE) -f CMakeFiles/super4pcs_automoc.dir/build.make CMakeFiles/super4pcs_automoc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=34 "Built target super4pcs_automoc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=31 "Built target super4pcs_automoc"
 .PHONY : CMakeFiles/super4pcs_automoc.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1335,38 +1298,6 @@ CMakeFiles/super4pcs_automoc.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/super4pcs_automoc.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/icprefine_automoc.dir
-
-# All Build rule for target.
-CMakeFiles/icprefine_automoc.dir/all:
-	$(MAKE) -f CMakeFiles/icprefine_automoc.dir/build.make CMakeFiles/icprefine_automoc.dir/depend
-	$(MAKE) -f CMakeFiles/icprefine_automoc.dir/build.make CMakeFiles/icprefine_automoc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=16 "Built target icprefine_automoc"
-.PHONY : CMakeFiles/icprefine_automoc.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/icprefine_automoc.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/icprefine_automoc.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles 0
-.PHONY : CMakeFiles/icprefine_automoc.dir/rule
-
-# Convenience name for target.
-icprefine_automoc: CMakeFiles/icprefine_automoc.dir/rule
-
-.PHONY : icprefine_automoc
-
-# clean rule for target.
-CMakeFiles/icprefine_automoc.dir/clean:
-	$(MAKE) -f CMakeFiles/icprefine_automoc.dir/build.make CMakeFiles/icprefine_automoc.dir/clean
-.PHONY : CMakeFiles/icprefine_automoc.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/icprefine_automoc.dir/clean
 
 .PHONY : clean
 
@@ -1414,7 +1345,7 @@ src/super4pcs/io/preinstall:
 src/super4pcs/io/CMakeFiles/super4pcs_io.dir/all: src/super4pcs/io/CMakeFiles/super4pcs_io_automoc.dir/all
 	$(MAKE) -f src/super4pcs/io/CMakeFiles/super4pcs_io.dir/build.make src/super4pcs/io/CMakeFiles/super4pcs_io.dir/depend
 	$(MAKE) -f src/super4pcs/io/CMakeFiles/super4pcs_io.dir/build.make src/super4pcs/io/CMakeFiles/super4pcs_io.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=35,36,37 "Built target super4pcs_io"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=32,33,34 "Built target super4pcs_io"
 .PHONY : src/super4pcs/io/CMakeFiles/super4pcs_io.dir/all
 
 # Include target in all.
@@ -1451,7 +1382,7 @@ clean: src/super4pcs/io/CMakeFiles/super4pcs_io.dir/clean
 src/super4pcs/io/CMakeFiles/super4pcs_io_automoc.dir/all:
 	$(MAKE) -f src/super4pcs/io/CMakeFiles/super4pcs_io_automoc.dir/build.make src/super4pcs/io/CMakeFiles/super4pcs_io_automoc.dir/depend
 	$(MAKE) -f src/super4pcs/io/CMakeFiles/super4pcs_io_automoc.dir/build.make src/super4pcs/io/CMakeFiles/super4pcs_io_automoc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=38 "Built target super4pcs_io_automoc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=35 "Built target super4pcs_io_automoc"
 .PHONY : src/super4pcs/io/CMakeFiles/super4pcs_io_automoc.dir/all
 
 # Build rule for subdir invocation for target.

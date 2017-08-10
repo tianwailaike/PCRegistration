@@ -46,7 +46,7 @@ using PointT = pcl::PointXYZRGB;
 using PointCloudT = pcl::PointCloud<PointT>;
 #include "ICPViewer.h"
 //#include "icprefine.h"
-#include "super.h"
+#include "superViewer.h"
 using namespace pcregistration;
 
 
@@ -81,7 +81,7 @@ private:
   QWidget* mainWidget;
   void initialize();
   ICPViewer* icpviewer;
-  //icprefine icp;
+  superViewer* superviewer;
   super supereg;
   QHBoxLayout* mainlayout;
   QMenu* file_menu;

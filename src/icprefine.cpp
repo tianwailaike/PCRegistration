@@ -494,22 +494,22 @@ void icprefine::init_viewer(pcl::visualization::PCLVisualizer::Ptr viewer)
 }
 
 
-int main(int argc, char** argv)
-{
-  icprefine icp;
-  std::string modelpath = argv[1];
-  std::string datapath  = argv[2];
-  icp.init_icp(modelpath,datapath);
-  icp.run_icp(icp.getref(),icp.getdata());
-  pcl::visualization::PCLVisualizer::Ptr viewer = icp.init_viewer();
-   while (!viewer->wasStopped()) { 
-//    if(toggle)
-//   {
-//   viewer.addPointCloud(dataCloud, transformed_cloud_color_handler,
-//                        "transformed_cloud");
-//   viewer.updatePointCloud(dataCloud,"transformed_cloud");
-//   toggle = !toggle;
+// int main(int argc, char** argv)
+// {
+//   icprefine icp;
+//   std::string modelpath = argv[1];
+//   std::string datapath  = argv[2];
+//   icp.init_icp(modelpath,datapath);
+//   icp.run_icp(icp.getref(),icp.getdata());
+//   pcl::visualization::PCLVisualizer::Ptr viewer = icp.init_viewer();
+//    while (!viewer->wasStopped()) { 
+// //    if(toggle)
+// //   {
+// //   viewer.addPointCloud(dataCloud, transformed_cloud_color_handler,
+// //                        "transformed_cloud");
+// //   viewer.updatePointCloud(dataCloud,"transformed_cloud");
+// //   toggle = !toggle;
+// //   }
+//     viewer->spinOnce();
 //   }
-    viewer->spinOnce();
-  }
-}
+// }

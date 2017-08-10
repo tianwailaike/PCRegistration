@@ -49,24 +49,23 @@ using namespace pcregistration;
 
 //TODO:1,refactor the ui and add some button and sliders for adjusting params
 //     2,add the slots and integrate the super4pcs
-// namespace Ui
-// {
-//   class PCLViewer;
-// }
 class superViewer : public QWidget
 {
    Q_OBJECT
 
 public:
-  explicit PCLViewer (QWidget *parent = 0);
-  ~PCLViewer ();
+  explicit superViewer (QWidget *parent = 0);
+  ~superViewer ();
   void createMainWidget();
-  void readPLY(std::string filename);
   void createBtns();
   void createSliders();
   void createLCDNumbers();
   void createMenus();
   void createActions();
+  void init_viewer();
+  boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer;
+  QVTKWidget* qvtkWidget;
+  
 public Q_SLOTS:
   void
   superButtonPressed ();
@@ -89,14 +88,11 @@ public Q_SLOTS:
   void
   saveButtonPressed ();
   
-  void
-  supereg_slot();
-  
 signals:
   void
   errorChanged(double value);
 protected:
-  boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer;
+  
   //pcl::visualization::PCLVisualizer::Ptr viewer;
   //boost::shared_ptr<pcl::visualization::CloudVierer> viewer;
   PointCloudT::Ptr cloud;
@@ -106,46 +102,28 @@ protected:
   unsigned int blue;
  
 private:
- // Ui::PCLViewer *ui;
-  QStackedWidget * stacked_widget;
-  QWidget* mainWidget; 
+  std::string referencepath;
+  std::string currentpath;
   QWidget* centralwidget;
   QWidget* panelWidget;
-  QVTKWidget* qvtkWidget;
-  void initialize();
-  //ICPViewer icp;
-  icprefine icp;
-  super supereg;
-
   
-  QMenu* file_menu;
-  QMenu* tool_menu;
-  QAction* open_file_action;
-  QAction* save_file_action;
-  QAction* supereg_action;
-  QAction* icprefine_action;
-  QAction* exit_action;
+  void initialize();
+  super* super_;
   QSlider *hSlider_delta;
     QSlider *hSlider_npoints;
-    QSlider *horizontalSlider_B;
+    QSlider *hSlider_pcsize;
     QLCDNumber *lcdNumber_delta;
     QLCDNumber *lcdNumber_npoints;
-    QLCDNumber *lcdNumber_B;
-    QLCDNumber *lcdNumber_error;
-    QSlider *horizontalSlider_p;
-    QLCDNumber *lcdNumber_p;
-    QLabel *label;
-    QLabel *label_2;
-    QLabel *label_3;
-    QLabel *label_4;
-    QLabel *label_error;
-    QPushButton *btnicp;
+    QLCDNumber *lcdNumber_pcsize;
+    QLabel *label_delta;
+    QLabel *label_npoints;
+    QLabel *label_pcsize;
+    QPushButton *btnsuper;
     QPushButton *btnsave;
-    int leftwidth;
     Eigen::Matrix<float,4,4> finaltrans;
     PointCloud finalCloud;
- // QPushButton 
+    int npoints;
 
 };
 
-#endif // PCLVIEWER_H
+#endif // SUPERVIEWER_H

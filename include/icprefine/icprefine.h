@@ -35,9 +35,9 @@ public:
 			delete singleton_;
 			singleton_ = NULL;
 		}
-		return GetInsance();
+		return GetInstance();
 	}
-  static icprefine *GetInsance()
+  static icprefine *GetInstance()
 	{
 		if(singleton_ == NULL)
 			singleton_ = new icprefine();

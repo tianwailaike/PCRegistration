@@ -6,11 +6,11 @@ set(CMAKE_CXX_COMPILER "g++")
 #set(CMAKE_CXX_COMPILER "clang++")
 
 #debug config
-set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE Debug)
 
 #debug config
-#set(CMAKE_BUILD_TYPE Release)
-#set(CMAKE_CXX_FLAGS "-std=c++11 -march=native -O3 ")
+set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_CXX_FLAGS "-std=c++11 -march=native -O3 ")
 
 #DIR config
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
@@ -223,10 +223,10 @@ file(GLOB ICP_HEADERS "${ICP_INCLUDE_DIRS}/*.hpp")
 message(STATUS "icp headers : ${ICP_HEADERS}")
 
 # Add all cpp files but main.cpp to the library
-  add_library(icp_algo SHARED ${ICP_SRC} ${ICP_INCLUDE} ${CMAKE_SOURCE_DIR}/src/icprefine.cpp)
+  add_library(icp_algo ${ICP_SRC} ${ICP_INCLUDE} ${CMAKE_SOURCE_DIR}/src/icprefine.cpp)
   target_link_libraries(icp_algo ${ICP_LIBRARIES} ${ICPREFINE_LIBRARIES})
-  add_executable(icprefine ${SRC_DIR}/icprefine.cpp)
-  target_link_libraries(icprefine ${ICP_LIBRARIES} ${ICPREFINE_LIBRARIES})
+ # add_executable(icprefine ${SRC_DIR}/icprefine.cpp)
+  #target_link_libraries(icprefine ${ICP_LIBRARIES} ${ICPREFINE_LIBRARIES})
 
 
 ################################################################################
@@ -258,7 +258,8 @@ file(GLOB hdrs ${SRC_DIR}/*.h)
 qt5_wrap_ui(hdr_ui ${SRC_DIR}/pclviewer.ui) #used to moc compile ui.h
 
 add_executable(pctest ${SRC_DIR}/pclviewer.cpp ${SRC_DIR}/pclviewer.h ${hdr_ui} ${SRC_DIR}/main.cpp
-                ${SRC_DIR}/ICPViewer.cpp ${INC_DIR}/ICPViewer.h )
+                ${SRC_DIR}/ICPViewer.cpp ${INC_DIR}/ICPViewer.h 
+                ${INC_DIR}/superViewer.h ${SRC_DIR}/superViewer.cpp)
 qt5_use_modules(pctest Widgets Core Gui)#this is a modern way to use the qt moudles
 message(status ${Qt5Gui_LIBRARIES}) 
 message(status ${VTK_LIBRARIES})
