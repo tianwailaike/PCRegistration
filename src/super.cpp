@@ -4,9 +4,9 @@ super::super()
 {
   input1 = "/home/ubuntu/lyc2017/Super4PCS/models/bunny.obj";
   input2 = "/home/ubuntu/lyc2017/Super4PCS/models/bunny_data.obj";
-  init_super(input1,input2);
+  //init_super(input1,input2); //init it when loading datas
   modelCloud = PointCloud(
-    new pcl::PointCloud<PointT>());;
+    new pcl::PointCloud<PointT>());
   dataCloud  = PointCloud(
     new pcl::PointCloud<PointT>());
   resultCloud = PointCloud(
@@ -21,15 +21,20 @@ super::~super()
 //convert from P3D to PCL pointcloud
 void super::P3D2PCL(vector<Point3D>& set, PointCloud& pc)
 {
-  if(set[0].hasColor())
+  pc->points.resize(set.size());
+  pc->width = set.size();
+  pc->height = 1;
+  pc->is_dense = true;
+  if(set[0].hasColor()) //TODO:the color should be set to 0;
    for(size_t i = 0;i<set.size();i++)
     {
       pc->points[i].x = set[i].x();
       pc->points[i].y = set[i].y();
       pc->points[i].z = set[i].z();
-//       pc->points[i].r = set[i].rgb().coeffRef(0);
+   //    pc->points[i].r = set[i].rgb().coeffRef(0);
 //       pc->points[i].g = set[i].rgb().coeffRef(1);
 //       pc->points[i].b = set[i].rgb().coeffRef(2);
+//       std::cout<<i<<std::endl;
     }
   else 
     for(size_t i=0;i<set.size();i++)
@@ -251,16 +256,28 @@ void super::transform(vector<Point3D>& set1, vector<Point3D>& set2,
 //    vec_ = mat.topLeftCorner<3,3>()*vec;
 //   vec_ = vec;
 //   std::cout<<vec<<std::endl;
+   
+   
+   Point3D::VectorType mat3,mat4;
+//    if(set1[0].rgb().empty())
+     mat3<<255,255,255;
+     mat4.setOnes();
+     set2.resize(set1.size());
   for(int i = 0;i<set1.size();i++)
   {
     tem = transform.topLeftCorner<3,3>()*set1[i].pos();
 //    tem[1] = transform.rows()*set1[i];
   //  tem[2] = transform.rows(2)*set1[i];
-    set2[i].set_pos(tem);
-    set2[i].set_rgb(set1[i].rgb());
-    set2[i].set_normal(set1[i].normal());
+    //std::cout<<"tem is :"<<tem<<std::endl;
+    
+       //set2[i].set_rgb(tem);
+//     std::cout<<"1"<<std::endl;
+//     set2[i].set_normal(mat4);
+//     std::cout<<"2"<<std::endl;
+       set2[i].set_pos(tem);
+      // std::cout<<"3"<<std::endl;
   }
-
+  std::cout<<"Done!"<<std::endl;
 }
 
 void super::setParams(PCSOptions options_)
@@ -415,10 +432,10 @@ void super::saveObject(std::string filepath)
       std::cout << "Exporting Registered geometry to "
                 << output.c_str()
                 << "..." << std::flush;
-      std::cout<< "size of sets2 is :"<<set2.size()<<std::endl;
+      std::cout<< "size of sets2 is :"<<set1.size()<<std::endl;
 
       iomananger.WriteObject((char *)output.c_str(),
-                             set2,
+                             set1,
                              tex_coords2,
                              normals2,
                              tris2,

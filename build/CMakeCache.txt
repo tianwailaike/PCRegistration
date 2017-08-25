@@ -646,6 +646,9 @@ Qt5Gui_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui
 //The directory containing a CMake configuration file for Qt5Network.
 Qt5Network_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Network
 
+//The directory containing a CMake configuration file for Qt5STATIC.
+Qt5STATIC_DIR:PATH=Qt5STATIC_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for Qt5WebKit.
 Qt5WebKit_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5WebKit
 
@@ -699,7 +702,7 @@ pcregistration_SOURCE_DIR:STATIC=/home/ubuntu/lyc2017/pcp/PCRegistration
 super4pcs_algo_LIB_DEPENDS:STATIC=general;super4pcs_io;
 
 //Dependencies for the target
-super4pcs_io_LIB_DEPENDS:STATIC=general;opencv_videostab;general;opencv_video;general;opencv_ts;general;opencv_superres;general;opencv_stitching;general;opencv_photo;general;opencv_ocl;general;opencv_objdetect;general;opencv_nonfree;general;opencv_ml;general;opencv_legacy;general;opencv_imgproc;general;opencv_highgui;general;opencv_gpu;general;opencv_flann;general;opencv_features2d;general;opencv_core;general;opencv_contrib;general;opencv_calib3d;general;opencv_core;general;opencv_highgui;
+super4pcs_io_LIB_DEPENDS:STATIC=general;opencv_core;general;opencv_highgui;general;opencv_core;general;opencv_highgui;
 
 
 ########################

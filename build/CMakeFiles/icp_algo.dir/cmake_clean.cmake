@@ -2,7 +2,6 @@ file(REMOVE_RECURSE
   "pctest_automoc.cpp"
   "super4pcs_algo_automoc.cpp"
   "icp_algo_automoc.cpp"
-  "super4pcs_automoc.cpp"
   "CMakeFiles/icp_algo.dir/src/icprefine/mestimator.cpp.o"
   "CMakeFiles/icp_algo.dir/src/icprefine/error_point_to_plane_sim3.cpp.o"
   "CMakeFiles/icp_algo.dir/src/icprefine/error.cpp.o"

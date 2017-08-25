@@ -78,7 +78,10 @@ private:
   PCSMatrixT super_result;   //results
   IOManager iomananger;
   
-  vector<Point3D> set1, set2,set3,set4;
+  vector<Point3D> set1;
+  vector<Point3D> set2;
+  vector<Point3D> set3;
+  vector<Point3D> set4;
   vector<Eigen::Matrix2f> tex_coords1, tex_coords2;
   vector<typename Point3D::VectorType> normals1, normals2;
   vector<tripple> tris1, tris2;

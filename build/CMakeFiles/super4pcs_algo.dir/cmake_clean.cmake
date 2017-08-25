@@ -2,7 +2,6 @@ file(REMOVE_RECURSE
   "pctest_automoc.cpp"
   "super4pcs_algo_automoc.cpp"
   "icp_algo_automoc.cpp"
-  "super4pcs_automoc.cpp"
   "CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/match4pcsBase.cc.o"
   "CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/4pcs.cc.o"
   "CMakeFiles/super4pcs_algo.dir/src/super4pcs/algorithms/super4pcs.cc.o"

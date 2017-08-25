@@ -8,6 +8,11 @@ set(CMAKE_CXX_COMPILER "g++")
 #debug config
 #set(CMAKE_BUILD_TYPE Debug)
 
+#generate static library config
+# SET(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+# SET(BUILD_SHARED_LIBRARIES OFF)
+# SET(CMAKE_EXE_LINKER_FLAGS "-static")
+
 #debug config
 set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_CXX_FLAGS "-std=c++11 -march=native -O3 ")
@@ -148,7 +153,7 @@ message(status ${SOPHUS_INCLUDE_DIRS})
 
 
 #-----------pctest------------
-find_package(OpenCV REQUIRED)
+find_package(OpenCV REQUIRED core highgui) #TODO
 find_package(PCL 1.7.2 REQUIRED COMPONENTS common io visualization registration)
 find_package(Qt5 REQUIRED COMPONENTS Gui Core Widgets)
 find_package(VTK REQUIRED)
@@ -188,12 +193,12 @@ add_subdirectory(${SRC_DIR}/super4pcs/utils)
 add_subdirectory(${SRC_DIR}/super4pcs/accelerators)
 
 #generate super4pcs algo library 
-add_library(super4pcs_algo ${Super4PCS_SRC} ${Super4PCS_INCLUDE})
+add_library(super4pcs_algo STATIC ${Super4PCS_SRC} ${Super4PCS_INCLUDE})
 # add the executable
-add_executable(super4pcs ${SRC_DIR}/super4pcs/super4pcs_test.cc)
+#add_executable(super4pcs ${SRC_DIR}/super4pcs/super4pcs_test.cc)
 #add_executable(super ${SRC_DIR}/super.cpp)
 TARGET_LINK_LIBRARIES(super4pcs_algo super4pcs_io super4pcs_accel)
-TARGET_LINK_LIBRARIES(super4pcs super4pcs_algo super4pcs_utils)
+#TARGET_LINK_LIBRARIES(super4pcs super4pcs_algo super4pcs_utils)
 #TARGET_LINK_LIBRARIES(super super4pcs_algo super4pcs_utils)
 #--------------icprefine------------------
 file(GLOB ICP_SRC ${SRC_DIR}/icprefine/*.cpp)
@@ -223,7 +228,7 @@ file(GLOB ICP_HEADERS "${ICP_INCLUDE_DIRS}/*.hpp")
 message(STATUS "icp headers : ${ICP_HEADERS}")
 
 # Add all cpp files but main.cpp to the library
-  add_library(icp_algo ${ICP_SRC} ${ICP_INCLUDE} ${CMAKE_SOURCE_DIR}/src/icprefine.cpp)
+  add_library(icp_algo STATIC ${ICP_SRC} ${ICP_INCLUDE} ${CMAKE_SOURCE_DIR}/src/icprefine.cpp)
   target_link_libraries(icp_algo ${ICP_LIBRARIES} ${ICPREFINE_LIBRARIES})
  # add_executable(icprefine ${SRC_DIR}/icprefine.cpp)
   #target_link_libraries(icprefine ${ICP_LIBRARIES} ${ICPREFINE_LIBRARIES})
@@ -246,6 +251,23 @@ endif(ICPREFINE_COMPILE_TESTS)
 ################################################################################
 ## Project files
 ################################################################################
+add_library(opencv_libs STATIC IMPORTED)
+SET_TARGET_PROPERTIES(opencv_libs PROPERTIES
+    IMPORTED_LOCATION /opt/opencv-2.4.13/lib/libopencv_ts.a)
+add_library(pcl_libs STATIC IMPORTED)
+SET_TARGET_PROPERTIES(pcl_libs PROPERTIES
+    IMPORTED_LOCATION /usr/lib/libpcl.a)
+add_library(icpalgo_libs STATIC IMPORTED)
+SET_TARGET_PROPERTIES(icpalgo_libs PROPERTIES
+    IMPORTED_LOCATION /home/ubuntu/lyc2017/pcp/PCRegistration/lib/libicp_algo.a)
+add_library(superalgo_libs STATIC IMPORTED)
+SET_TARGET_PROPERTIES(superalgo_libs PROPERTIES
+    IMPORTED_LOCATION /home/ubuntu/lyc2017/pcp/PCRegistration/lib/libsuper4pcs_algo.a)
+add_library(qt5_libs STATIC IMPORTED)
+SET_TARGET_PROPERTIES(qt5_libs PROPERTIES
+    IMPORTED_LOCATION /opt/Qt5.8.0/5.8/gcc_64/lib/libQt5Widgets.a)
+
+    
 
 include_directories(${OpenCV_INCLUDE_DIRS}
                     ${PCL_INCLUDE_DIRS}
@@ -260,11 +282,15 @@ qt5_wrap_ui(hdr_ui ${SRC_DIR}/pclviewer.ui) #used to moc compile ui.h
 add_executable(pctest ${SRC_DIR}/pclviewer.cpp ${SRC_DIR}/pclviewer.h ${hdr_ui} ${SRC_DIR}/main.cpp
                 ${SRC_DIR}/ICPViewer.cpp ${INC_DIR}/ICPViewer.h 
                 ${INC_DIR}/superViewer.h ${SRC_DIR}/superViewer.cpp)
-qt5_use_modules(pctest Widgets Core Gui)#this is a modern way to use the qt moudles
+qt5_use_modules(pctest Widgets Core Gui)#this is a modern way to use the qt moudles #Widgets
 message(status ${Qt5Gui_LIBRARIES}) 
 message(status ${VTK_LIBRARIES})
-target_link_libraries(pctest ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES} ${PCL_VISUALIZATION_LIBRARIES}
-                      ${OpenCV_LIBS} ${VTK_LIBRARIES} icp_algo super4pcs_algo)     
-                      #icp_algo super4pcs_algo         
-
+#static link
+#target_link_libraries(pctest ${VTK_LIBRARIES} icpalgo_libs superalgo_libs opencv_libs pcl_libs)#qt5_libs   
+                      #icp_algo super4pcs_algo  ${OpenCV_LIBS} ${PCL_COMMON_LIBRARIES} 
+                      #${PCL_VISUALIZATION_LIBRARIES}  ${PCL_IO_LIBRARIES}   ${VTK_LIBRARIES}   icp_algo 
+#dynamic link
+target_link_libraries(pctest ${OpenCV_LIBS} ${PCL_COMMON_LIBRARIES} ${PCL_VISUALIZATION_LIBRARIES}  
+                      ${PCL_IO_LIBRARIES}   ${VTK_LIBRARIES} icp_algo super4pcs_algo)     
+                      #icp_algo super4pcs_algo   
 #install(TARGETS pcregistration RUNTIME DESTINATION bin)

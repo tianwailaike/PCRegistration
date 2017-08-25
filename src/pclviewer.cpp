@@ -107,7 +107,7 @@ PCLViewer::loadpc_slot()
 	   std::cout<<"1"<<std::endl;
  	   icpviewer->init_viewer();
 	   icpviewer->viewer->updatePointCloud(icp->getResultCloud(),"registered_cloud");
-           icp::IcpResults tem = icp->run_icp(icp->getref(),icp->getResultCloud());
+           icp::IcpResults tem = icp->getResult();//->run_icp(icp->getref(),icp->getResultCloud());
            std::stringstream r;
            r << tem;
            icpviewer->viewer->updateText(r.str(),0,0,"show_result");
@@ -121,7 +121,7 @@ PCLViewer::loadpc_slot()
 	   std::cout<<"1"<<std::endl;
  	   superviewer->init_viewer();
 	   superviewer->viewer->updatePointCloud(super_->getResultCloud(),"registered_cloud");
-           PCSMatrixT tem = super_->run_super(super_->getref(),super_->getResult());
+           PCSMatrixT tem = super_->getResults();//run_super(super_->getref(),super_->getResult());
            std::stringstream r;
            r << tem;
            superviewer->viewer->updateText(r.str(),0,0,"show_result");

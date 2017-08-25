@@ -74,16 +74,13 @@ public Q_SLOTS:
   RGBsliderReleased ();
 
   void
-  pSliderValueChanged (int value);
+  delta_ValueChanged (int value);
 
   void
-  redSliderValueChanged (int value);
+  npoints_ValueChanged (int value);
 
   void
-  greenSliderValueChanged (int value);
-
-  void
-  blueSliderValueChanged (int value);
+  pcsize_ValueChanged (int value);
   
   void
   saveButtonPressed ();

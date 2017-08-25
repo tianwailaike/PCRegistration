@@ -91,7 +91,13 @@ ICPViewer::createSliders()
         hSlider_npoints->setValue(200);
         hSlider_npoints->setOrientation(Qt::Horizontal);
         
-        
+        hSlider_pcsize = new QSlider(panelWidget);
+        hSlider_pcsize->setFixedSize(QSize(160,30));;
+	hSlider_pcsize->setMaximum(6);
+	hSlider_pcsize->setMinimum(1);
+        hSlider_pcsize->setValue(2);
+        hSlider_pcsize->setOrientation(Qt::Horizontal);
+	
 	lcdNumber_distance = new QLCDNumber(panelWidget);
         lcdNumber_distance->setDigitCount(3);
 	lcdNumber_distance->setFixedSize(QSize(80,40));
@@ -104,6 +110,12 @@ ICPViewer::createSliders()
         lcdNumber_npoints->setSegmentStyle(QLCDNumber::Flat);
         lcdNumber_npoints->setProperty("intValue", QVariant(128));
 	
+	lcdNumber_pcsize = new QLCDNumber(panelWidget);
+        lcdNumber_pcsize->setFixedSize(QSize(80,40));;
+	lcdNumber_pcsize->setDigitCount(3);
+        lcdNumber_pcsize->setSegmentStyle(QLCDNumber::Flat);
+        lcdNumber_pcsize->setProperty("intValue", QVariant(2));
+
 	lcdNumber_error = new QLCDNumber(panelWidget);
         lcdNumber_error->setFixedSize(QSize(180,40));
 	lcdNumber_error->setDigitCount(8);
@@ -127,6 +139,11 @@ ICPViewer::createSliders()
 	label_npoits->setAlignment(Qt::AlignHCenter);
 	label_npoits->setFont(font);
      
+	label_pcsize = new QLabel(panelWidget);
+        label_pcsize->setFixedSize(QSize(191, 31));
+	label_pcsize->setText(tr("Point Cloud Size"));
+	label_pcsize->setAlignment(Qt::AlignHCenter);
+	label_pcsize->setFont(font);
 	
 	label_error = new QLabel(panelWidget);
 	label_error->setFixedSize(QSize(191, 31));
@@ -200,9 +217,12 @@ ICPViewer::initialize()
 	slider_layout1->addWidget(hSlider_distance);
 	slider_layout1->addWidget(label_npoits);
 	slider_layout1->addWidget(hSlider_npoints);
+	slider_layout1->addWidget(label_pcsize);
+	slider_layout1->addWidget(hSlider_pcsize);
 	
 	slider_layout2->addWidget(lcdNumber_distance);
 	slider_layout2->addWidget(lcdNumber_npoints);
+	slider_layout2->addWidget(lcdNumber_pcsize);
 	
 	error_layout->addWidget(label_error);
 	error_layout->addWidget(lcdNumber_error);
@@ -223,17 +243,20 @@ ICPViewer::initialize()
 
         QObject::connect(hSlider_distance, SIGNAL(sliderMoved(int)), lcdNumber_distance, SLOT(display(int)));
         QObject::connect(hSlider_npoints, SIGNAL(sliderMoved(int)), lcdNumber_npoints, SLOT(display(int)));
-     
+        QObject::connect(hSlider_pcsize, SIGNAL(sliderMoved(int)), lcdNumber_pcsize, SLOT(display(int)));
+
 	QObject::connect(this,SIGNAL(errorChanged(double)),lcdNumber_error,SLOT(display(double)));
 	
 	 // Connect "random" button and the function
   connect (btnicp,  SIGNAL (clicked ()), this, SLOT (randomButtonPressed ()));
 
   // Connect R,G,B sliders and their functions
-  connect (hSlider_distance, SIGNAL (valueChanged (int)), this, SLOT (redSliderValueChanged (int)));
-  connect (hSlider_npoints, SIGNAL (valueChanged (int)), this, SLOT (greenSliderValueChanged (int)));
+  connect (hSlider_distance, SIGNAL (valueChanged (int)), this, SLOT (distance_ValueChanged(double)));
+  connect (hSlider_npoints, SIGNAL (valueChanged (int)), this, SLOT (npoints_ValueChanged(int)));
+  connect (hSlider_pcsize, SIGNAL (valueChanged (int)), this, SLOT (pcsize_ValueChanged(int)));
   connect (hSlider_distance, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
   connect (hSlider_npoints, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
+  connect (hSlider_pcsize, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
 
   
   //Connect the save button;
@@ -290,5 +313,21 @@ void ICPViewer::npoints_ValueChanged(int value)
   npoints = value;
   printf ("npointsSliderValueChanged: [%d]\n",npoints);
 }
+void
+ICPViewer::pcsize_ValueChanged (int value)
+{
+  if(!icp->getref()->empty())
+  {
+  viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "original_cloud");
+  viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "reference_cloud");
+  viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "registered_cloud");
+  viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "current_cloud");
+  qvtkWidget->update ();
+  }
+}
 
-
+void
+ICPViewer::RGBsliderReleased ()
+{
+  qvtkWidget->update ();
+}

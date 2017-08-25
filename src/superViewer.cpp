@@ -29,7 +29,7 @@ superViewer::createMainWidget()
 void 
 superViewer::init_viewer()
 {
-  viewer.reset (new pcl::visualization::PCLVisualizer ("viewer", false)); 
+  viewer.reset (new pcl::visualization::PCLVisualizer ("viewer1", false)); 
   super_->init_viewer(viewer);
   std::cout<<"0"<<std::endl;
   qvtkWidget->SetRenderWindow(viewer->getRenderWindow ());
@@ -205,9 +205,9 @@ superViewer::initialize()
   connect (btnsuper,  SIGNAL (clicked ()), this, SLOT (superButtonPressed ()));
 
   // Connect R,G,B sliders and their functions
-  connect (hSlider_delta, SIGNAL (valueChanged (int)), this, SLOT (redSliderValueChanged (int)));
-  connect (hSlider_npoints, SIGNAL (valueChanged (int)), this, SLOT (greenSliderValueChanged (int)));
-  connect (hSlider_pcsize, SIGNAL (valueChanged (int)), this, SLOT (blueSliderValueChanged (int)));
+  connect (hSlider_delta, SIGNAL (valueChanged (int)), this, SLOT (delta_ValueChanged (int)));
+  connect (hSlider_npoints, SIGNAL (valueChanged (int)), this, SLOT (npoints_ValueChanged (int)));
+  connect (hSlider_pcsize, SIGNAL (valueChanged (int)), this, SLOT (pcsize_ValueChanged (int)));
   connect (hSlider_delta, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
   connect (hSlider_npoints, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
   connect (hSlider_pcsize, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
@@ -247,13 +247,13 @@ superViewer::saveButtonPressed()
   
   //save the final transformation
   std::ofstream save;
-  save.open("/home/ubuntu/finaltans.txt",std::ios::out|std::ios::trunc);
+  save.open("./super_finaltans.txt",std::ios::out|std::ios::trunc);
   std::stringstream r;
   r<<super_->getResults();
   save<<r.str();
   save.close();
   std::cout<<"save done!"<<std::endl;
-  std::string filepath = "/home/ubuntu/result.ply";
+  std::string filepath = "./super_result.ply";
   super_->saveObject(filepath);
 }
 void
@@ -266,39 +266,36 @@ superViewer::RGBsliderReleased ()
 //     cloud->points[i].g = green;
 //     cloud->points[i].b = blue;
 //   }
-  viewer->updatePointCloud(super_->getResultCloud(), "regitsterd_cloud");
-  viewer->updatePointCloud(super_->getdataCloud(),"current_cloud");
+ // viewer->updatePointCloud(super_->getResultCloud(), "regitsterd_cloud");
+ // viewer->updatePointCloud(super_->getdataCloud(),"current_cloud");
   qvtkWidget->update();
 }
 
 void
-superViewer::pSliderValueChanged (int value)
+superViewer::pcsize_ValueChanged (int value)
 {
+  if(!super_->getrefCloud()->empty())
+  {
   viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "original_cloud");
   viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "reference_cloud");
   viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "registered_cloud");
   viewer->setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, value, "current_cloud");
   qvtkWidget->update ();
+  }
 }
 
 void
-superViewer::redSliderValueChanged (int value)
+superViewer::delta_ValueChanged (int value)
 {
   red = value;
   printf ("redSliderValueChanged: [%d|%d|%d]\n", red, green, blue);
 }
 
 void
-superViewer::greenSliderValueChanged (int value)
+superViewer::npoints_ValueChanged (int value)
 {
   green = value;
   printf ("greenSliderValueChanged: [%d|%d|%d]\n", red, green, blue);
 }
 
-void
-superViewer::blueSliderValueChanged (int value)
-{
-  blue = value;
-  printf("blueSliderValueChanged: [%d|%d|%d]\n", red, green, blue);
-}
 

@@ -80,9 +80,13 @@ public Q_SLOTS:
   void
   npoints_ValueChanged (int value);
 
+  void 
+  pcsize_ValueChanged(int value);
   
   void
   saveButtonPressed ();
+  
+  void RGBsliderReleased();
   
 signals:
   void
@@ -105,12 +109,15 @@ private:
   QAction* icprefine_action;
   QSlider *hSlider_distance;
   QSlider *hSlider_npoints;
+  QSlider *hSlider_pcsize;
   QLCDNumber *lcdNumber_distance;
   QLCDNumber *lcdNumber_npoints;
   QLCDNumber *lcdNumber_error;
+  QLCDNumber *lcdNumber_pcsize;
   QLabel *label_distance;
     QLabel *label_npoits;
     QLabel *label_error;
+    QLabel *label_pcsize;
     QPushButton *btnicp;
     QPushButton *btnsave;
     Eigen::Matrix<float,4,4> finaltrans;

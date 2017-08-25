@@ -49,7 +49,7 @@ string icprefine:: getsuffix(string file)
   if(file.empty())
     return "";
   size_t found = file.rfind(".");
-  string str = file.substr(found);
+  string str = file.substr(found+1);
   return str;
 }
 int icprefine::init_icp(std::string refpath,std::string datapath)
@@ -81,7 +81,7 @@ int icprefine::init_icp(std::string refpath,std::string datapath)
      }
      if (pcl::io::loadPLYFile<PointT> (data.c_str(), *dataCloud) == -1) 
      {
-        std::cout << "Could't read file " << model;
+        std::cout << "Could't read file " << data;
         return (-1);
      }
   }

@@ -2,7 +2,6 @@ file(REMOVE_RECURSE
   "pctest_automoc.cpp"
   "super4pcs_algo_automoc.cpp"
   "icp_algo_automoc.cpp"
-  "super4pcs_automoc.cpp"
   "ui_pclviewer.h"
   "CMakeFiles/pctest.dir/src/pclviewer.cpp.o"
   "CMakeFiles/pctest.dir/src/main.cpp.o"

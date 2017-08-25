@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_superViewer_t {
-    QByteArrayData data[11];
-    char stringdata0[176];
+    QByteArrayData data[10];
+    char stringdata0[147];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,18 +35,16 @@ QT_MOC_LITERAL(2, 25, 0), // ""
 QT_MOC_LITERAL(3, 26, 5), // "value"
 QT_MOC_LITERAL(4, 32, 18), // "superButtonPressed"
 QT_MOC_LITERAL(5, 51, 17), // "RGBsliderReleased"
-QT_MOC_LITERAL(6, 69, 19), // "pSliderValueChanged"
-QT_MOC_LITERAL(7, 89, 21), // "redSliderValueChanged"
-QT_MOC_LITERAL(8, 111, 23), // "greenSliderValueChanged"
-QT_MOC_LITERAL(9, 135, 22), // "blueSliderValueChanged"
-QT_MOC_LITERAL(10, 158, 17) // "saveButtonPressed"
+QT_MOC_LITERAL(6, 69, 18), // "delta_ValueChanged"
+QT_MOC_LITERAL(7, 88, 20), // "npoints_ValueChanged"
+QT_MOC_LITERAL(8, 109, 19), // "pcsize_ValueChanged"
+QT_MOC_LITERAL(9, 129, 17) // "saveButtonPressed"
 
     },
     "superViewer\0errorChanged\0\0value\0"
     "superButtonPressed\0RGBsliderReleased\0"
-    "pSliderValueChanged\0redSliderValueChanged\0"
-    "greenSliderValueChanged\0blueSliderValueChanged\0"
-    "saveButtonPressed"
+    "delta_ValueChanged\0npoints_ValueChanged\0"
+    "pcsize_ValueChanged\0saveButtonPressed"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,7 +54,7 @@ static const uint qt_meta_data_superViewer[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -64,16 +62,15 @@ static const uint qt_meta_data_superViewer[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   54,    2, 0x06 /* Public */,
+       1,    1,   49,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   57,    2, 0x0a /* Public */,
-       5,    0,   58,    2, 0x0a /* Public */,
-       6,    1,   59,    2, 0x0a /* Public */,
-       7,    1,   62,    2, 0x0a /* Public */,
-       8,    1,   65,    2, 0x0a /* Public */,
-       9,    1,   68,    2, 0x0a /* Public */,
-      10,    0,   71,    2, 0x0a /* Public */,
+       4,    0,   52,    2, 0x0a /* Public */,
+       5,    0,   53,    2, 0x0a /* Public */,
+       6,    1,   54,    2, 0x0a /* Public */,
+       7,    1,   57,    2, 0x0a /* Public */,
+       8,    1,   60,    2, 0x0a /* Public */,
+       9,    0,   63,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Double,    3,
@@ -81,7 +78,6 @@ static const uint qt_meta_data_superViewer[] = {
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
@@ -99,11 +95,10 @@ void superViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 0: _t->errorChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 1: _t->superButtonPressed(); break;
         case 2: _t->RGBsliderReleased(); break;
-        case 3: _t->pSliderValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 4: _t->redSliderValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 5: _t->greenSliderValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 6: _t->blueSliderValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 7: _t->saveButtonPressed(); break;
+        case 3: _t->delta_ValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 4: _t->npoints_ValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 5: _t->pcsize_ValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 6: _t->saveButtonPressed(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -143,13 +138,13 @@ int superViewer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 7)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 8;
+        _id -= 7;
     }
     return _id;
 }
