@@ -11,6 +11,8 @@ superViewer::superViewer(QWidget *parent) :
   //std::string modelpath = "/home/ubuntu/points1.ply";
   //std::string datapath = "/home/ubuntu/points2.ply";
   is_viewer_initiate = false;
+  delta_ = 50;//slider control
+  sample_size_ = 200;//slider control
   currentpath  = "/home/ubuntu/lyc2017/pcp/icptest/models/bunny_data.obj";
   super_ = super::GetInstance();
   createMainWidget();
@@ -90,9 +92,9 @@ superViewer::createSliders()
 {
         hSlider_delta = new QSlider(panelWidget);
 	hSlider_delta->setFixedSize(QSize(160,30));
-        hSlider_delta->setMaximum(20);
+        hSlider_delta->setMaximum(200);
 	hSlider_delta->setMinimum(1);
-        hSlider_delta->setValue(4);
+        hSlider_delta->setValue(40);
         hSlider_delta->setOrientation(Qt::Horizontal);
 	
 	hSlider_npoints = new QSlider(panelWidget);
@@ -313,7 +315,7 @@ superViewer::RGBsliderReleased ()
 //   }
  // viewer->updatePointCloud(super_->getResultCloud(), "regitsterd_cloud");
  // viewer->updatePointCloud(super_->getdataCloud(),"current_cloud");
-  super_->setDelta((double)delta_/100);
+  super_->setDelta((double)delta_/1000);
   std::cout<<"delta_ is : "<<(double)delta_/100<<std::endl;
   super_->setSampleSize(sample_size_);
   std::cout<<"sample_size_ is : "<<sample_size_<<std::endl;

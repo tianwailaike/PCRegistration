@@ -437,10 +437,10 @@ void super::saveObject(std::string filepath)
       std::cout << "Exporting Registered geometry to "
                 << output.c_str()
                 << "..." << std::flush;
-      std::cout<< "size of sets2 is :"<<set1.size()<<std::endl;
+      std::cout<< "size of sets2 is :"<<set2.size()<<std::endl;
 
       iomananger.WriteObject((char *)output.c_str(),
-                             set1,
+                             set2,
                              tex_coords2,
                              normals2,
                              tris2,

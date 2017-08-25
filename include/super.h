@@ -71,7 +71,7 @@ public:
   void init_viewer(pcl::visualization
                   ::PCLVisualizer::Ptr viewer);
   //
-  void transform(vector<Point3D>& set1,vector<Point3D>& set2,
+  void transform(vector<Point3D>& src_set,vector<Point3D>& dest_set,
 		PCSMatrixT transform);
   void saveObject(std::string filepath);
 private:
