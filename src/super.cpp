@@ -78,14 +78,14 @@ void super::init_super(string refpath, string curpath)
    outputSampled2 = "";
    PCSOptions options_;
 // Delta (see the paper).
-   options_.delta = 0.05;
+   options_.delta = 0.03;//default 0.05
 
 // Estimated overlap (see the paper).
-   options_.overlap_estimation = 0.3;
+   options_.overlap_estimation = 0.5;
 
 // Threshold of the computed overlap for termination. 1.0 means don't terminate
 // before the end.
-   options_.terminate_threshold = 1.0;
+   options_.terminate_threshold = 0.9;//default 1.0
 
 // Maximum norm of RGB values between corresponded points. 1e9 means don't use.
    options_.max_color_distance = -1;
@@ -163,7 +163,7 @@ void super::getArgs(int argc, char **argv) {
     } else if (!strcmp(argv[i], "-m")) {
       outputMat = argv[++i];
     } else if (!strcmp(argv[i], "-x")) {
-      use_super4pcs = false;
+      use_super4pcs = true;
     } else if (!strcmp(argv[i], "--sampled1")) {
       outputSampled1 = argv[++i];
     } else if (!strcmp(argv[i], "--sampled2")) {
@@ -199,6 +199,11 @@ super* super::singleton_ = NULL;
 void super::setDelta(double delta_)
 {
   options.delta = delta_;
+}
+
+void super::setSampleSize(int sample_size_)
+{
+  options.sample_size = sample_size_;
 }
 
 PointCloud super:: getrefCloud()

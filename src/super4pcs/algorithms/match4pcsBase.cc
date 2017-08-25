@@ -248,6 +248,7 @@ void Match4PCSBase::init(const std::vector<Point3D>& P,
         number_of_trials_ = kMinNumberOfTrials;
 
     printf("norm_max_dist: %f\n", options_.delta);
+    printf("overlap_estimation: %f\n", options_.overlap_estimation);
     current_trial_ = 0;
     best_LCP_ = 0.0;
 

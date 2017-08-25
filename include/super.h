@@ -53,6 +53,7 @@ public:
 	}
   void init_super(string refpath, string curpath);
   void setDelta(double delta_);
+  void setSampleSize(int sample_size_);
   void getArgs(int argc, char **argv);
   PointCloud getrefCloud();
   vector<Point3D>& getref();

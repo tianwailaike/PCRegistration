@@ -94,8 +94,8 @@ protected:
   //boost::shared_ptr<pcl::visualization::CloudVierer> viewer;
   PointCloudT::Ptr cloud;
 
-  unsigned int red;
-  unsigned int green;
+  unsigned int delta_;
+  unsigned int sample_size_;
   unsigned int blue;
  
 private:
@@ -120,6 +120,8 @@ private:
     Eigen::Matrix<float,4,4> finaltrans;
     PointCloud finalCloud;
     int npoints;
+    bool is_viewer_initiate;
+
 
 };
 

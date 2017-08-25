@@ -10,6 +10,7 @@ superViewer::superViewer(QWidget *parent) :
   referencepath = "/home/ubuntu/lyc2017/pcp/icptest/models/bunny.obj";
   //std::string modelpath = "/home/ubuntu/points1.ply";
   //std::string datapath = "/home/ubuntu/points2.ply";
+  is_viewer_initiate = false;
   currentpath  = "/home/ubuntu/lyc2017/pcp/icptest/models/bunny_data.obj";
   super_ = super::GetInstance();
   createMainWidget();
@@ -29,21 +30,60 @@ superViewer::createMainWidget()
 void 
 superViewer::init_viewer()
 {
-  viewer.reset (new pcl::visualization::PCLVisualizer ("viewer1", false)); 
-  super_->init_viewer(viewer);
-  std::cout<<"0"<<std::endl;
-  qvtkWidget->SetRenderWindow(viewer->getRenderWindow ());
-  std::cout<<"1"<<std::endl;
-  if(qvtkWidget->GetInteractor()==nullptr)
-    std::cout<<"Interactor"<<std::endl;
-  if(qvtkWidget->GetRenderWindow ()==nullptr)
-    std::cout<<"renderwindow"<<std::endl;
-  viewer->setupInteractor (qvtkWidget->GetInteractor(), qvtkWidget->GetRenderWindow ());
-  std::cout<<"1.5"<<std::endl;
-  qvtkWidget->update ();
-  std::cout<<"2"<<std::endl;
-  viewer->resetCamera ();
-  qvtkWidget->update ();
+   if(is_viewer_initiate==false)
+  {
+    viewer.reset (new pcl::visualization::PCLVisualizer ("viewer", false)); 
+    std::cout<<"I am initialized!"<<std::endl;
+     super_->init_viewer(viewer);
+     is_viewer_initiate = true;
+     std::cout<<"0"<<std::endl;
+     qvtkWidget->SetRenderWindow(viewer->getRenderWindow ());
+     std::cout<<"1"<<std::endl;
+     if(qvtkWidget->GetInteractor()==nullptr)
+       std::cout<<"Interactor"<<std::endl;
+     if(qvtkWidget->GetRenderWindow ()==nullptr)
+       std::cout<<"renderwindow"<<std::endl;
+     viewer->setupInteractor (qvtkWidget->GetInteractor(), qvtkWidget->GetRenderWindow ());
+     std::cout<<"1.5"<<std::endl;
+     qvtkWidget->update ();
+     std::cout<<"2"<<std::endl;
+     viewer->resetCamera ();
+     qvtkWidget->update ();
+  }
+  else
+  {
+     finaltrans = Eigen::Matrix4f::Identity();
+     std::cout<<"This is the final mat result:\n"<<finaltrans<<std::endl;
+     printf ("DONE\n");
+  //PointCloud tem = icp.getResultCloud();
+     viewer->updatePointCloud(super_->getrefCloud(),"original_cloud");
+     viewer->updatePointCloud(super_->getrefCloud(),"reference_cloud");
+     viewer->updatePointCloud(super_->getdataCloud(),"current_cloud");
+     viewer->updatePointCloud(super_->getResultCloud(),"registered_cloud");
+     std::stringstream r;
+     r << 0;
+     viewer->updateText(r.str(),0,0,"show_result");
+     qvtkWidget->update();
+  }
+  
+//   if(is_viewer_initiate==false)
+//   {
+//     viewer.reset (new pcl::visualization::PCLVisualizer ("viewer1", false)); 
+//     super_->init_viewer(viewer);
+//     std::cout<<"0"<<std::endl;
+//     qvtkWidget->SetRenderWindow(viewer->getRenderWindow ());
+//     std::cout<<"1"<<std::endl;
+//     if(qvtkWidget->GetInteractor()==nullptr)
+//       std::cout<<"Interactor"<<std::endl;
+//     if(qvtkWidget->GetRenderWindow ()==nullptr)
+//       std::cout<<"renderwindow"<<std::endl;
+//     viewer->setupInteractor (qvtkWidget->GetInteractor(), qvtkWidget->GetRenderWindow ());
+//     std::cout<<"1.5"<<std::endl;
+//     qvtkWidget->update ();
+//     std::cout<<"2"<<std::endl;
+//     viewer->resetCamera ();
+//     qvtkWidget->update ();
+//   }
 }
 void
 superViewer::createSliders()
@@ -224,10 +264,15 @@ superViewer::superButtonPressed ()
 {
   printf ("Super button was pressed\n");
   printf ("Global refine .............\n");
-  PCSMatrixT tem = super_->run_super(super_->getref(),
-				     super_->getResult());//TODO 
+//  PCSMatrixT tem = super_->run_super(super_->getref(),
+//				     super_->getResult());//continously refine 
+  //may not be a good solution as global registration tends to get bad results if not 
+  //properly set
   //emit errorChanged(static_cast<double>(tem.registrationError[tem.registrationError.size() - 1]));
-  finaltrans = finaltrans*tem;
+  PCSMatrixT tem = super_->run_super(super_->getref(),
+				     super_->getdata());//refine once 
+  //finaltrans = finaltrans*tem; //continously refine
+  finaltrans = tem;//refine once
   std::cout<<"This is the final mat result:\n"<<finaltrans<<std::endl;
   printf ("DONE\n");
   //PointCloud tem = icp.getResultCloud();
@@ -268,7 +313,10 @@ superViewer::RGBsliderReleased ()
 //   }
  // viewer->updatePointCloud(super_->getResultCloud(), "regitsterd_cloud");
  // viewer->updatePointCloud(super_->getdataCloud(),"current_cloud");
-  qvtkWidget->update();
+  super_->setDelta((double)delta_/100);
+  std::cout<<"delta_ is : "<<(double)delta_/100<<std::endl;
+  super_->setSampleSize(sample_size_);
+  std::cout<<"sample_size_ is : "<<sample_size_<<std::endl;
 }
 
 void
@@ -287,15 +335,15 @@ superViewer::pcsize_ValueChanged (int value)
 void
 superViewer::delta_ValueChanged (int value)
 {
-  red = value;
-  printf ("redSliderValueChanged: [%d|%d|%d]\n", red, green, blue);
+  delta_ = value;
+  printf ("deltaValueChanged: [%d|%d|%d]\n", delta_, sample_size_, blue);
 }
 
 void
 superViewer::npoints_ValueChanged (int value)
 {
-  green = value;
-  printf ("greenSliderValueChanged: [%d|%d|%d]\n", red, green, blue);
+  sample_size_ = value;
+  printf ("samplesizeValueChanged: [%d|%d|%d]\n",delta_,sample_size_, blue);
 }
 
 

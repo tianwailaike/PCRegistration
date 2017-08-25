@@ -65,13 +65,13 @@ Name=pctest
 Type=Native Application
 
 [Launch][Launch Configuration 2][Data]
-Arguments=/home/ubuntu/lyc2017/pcp/icptest/models/bunny.obj
+Arguments=
 Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
 Dependency Action=Nothing
 EnvironmentGroup=
 Executable=file:///home/ubuntu/lyc2017/pcp/PCRegistration/build/pctest
 External Terminal=konsole --noclose --workdir %workdir -e %exe
-Project Target=PCRegistration,icprefine
+Project Target=
 Use External Terminal=false
 Working Directory=
 isExecutable=true
