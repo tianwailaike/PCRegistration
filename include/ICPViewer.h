@@ -75,7 +75,7 @@ public Q_SLOTS:
   randomButtonPressed ();
 
   void
-  distance_ValueChanged (double value);
+  distance_ValueChanged (int value);
 
   void
   npoints_ValueChanged (int value);

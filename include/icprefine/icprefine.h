@@ -54,6 +54,8 @@ public:
   pcl::visualization::PCLVisualizer::Ptr init_viewer();
   void init_viewer(pcl::visualization::PCLVisualizer::Ptr viewer);
   void setParams(icp::IcpParameters);
+  void setDistance(double dist_);
+  void setNiter(int max_iter_);
   static void keyboard_callback(const pcl::visualization::KeyboardEvent& event);
   static void pp_callback (const pcl::visualization::PointPickingEvent &event);
   void saveObject(std::string filepath);

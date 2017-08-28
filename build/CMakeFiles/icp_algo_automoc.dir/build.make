@@ -55,7 +55,7 @@ include CMakeFiles/icp_algo_automoc.dir/progress.make
 
 CMakeFiles/icp_algo_automoc:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic moc for target icp_algo"
-	/usr/bin/cmake -E cmake_autogen /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/icp_algo_automoc.dir/ Release
+	/usr/bin/cmake -E cmake_autogen /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/icp_algo_automoc.dir/ Debug
 
 icp_algo_automoc: CMakeFiles/icp_algo_automoc
 icp_algo_automoc: CMakeFiles/icp_algo_automoc.dir/build.make

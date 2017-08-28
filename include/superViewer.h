@@ -85,6 +85,9 @@ public Q_SLOTS:
   void
   saveButtonPressed ();
   
+  void
+  resetButtonPressed();
+  
 signals:
   void
   errorChanged(double value);
@@ -117,6 +120,7 @@ private:
     QLabel *label_pcsize;
     QPushButton *btnsuper;
     QPushButton *btnsave;
+    QPushButton *btnreset;
     Eigen::Matrix<float,4,4> finaltrans;
     PointCloud finalCloud;
     int npoints;

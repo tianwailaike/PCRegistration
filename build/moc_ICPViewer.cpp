@@ -77,7 +77,7 @@ static const uint qt_meta_data_ICPViewer[] = {
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Double,    3,
+    QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void,
@@ -94,7 +94,7 @@ void ICPViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         switch (_id) {
         case 0: _t->errorChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 1: _t->randomButtonPressed(); break;
-        case 2: _t->distance_ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 2: _t->distance_ValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 3: _t->npoints_ValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 4: _t->pcsize_ValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 5: _t->saveButtonPressed(); break;

@@ -176,6 +176,12 @@ superViewer::createBtns()
         btnsave->setFixedSize(QSize(201, 81));
         //btnicp->setCheckable();
 	btnsave->setFont(font);
+	
+        btnreset = new QPushButton(panelWidget);
+        btnreset->setText(tr("Reset"));
+        btnreset->setFixedSize(QSize(201, 81));
+        //btnicp->setCheckable();
+	btnreset->setFont(font);
 }
 void 
 superViewer::initialize()
@@ -229,6 +235,7 @@ superViewer::initialize()
 	
 	btn_layout->addWidget(btnsuper,Qt::AlignCenter);
 	btn_layout->addWidget(btnsave,Qt::AlignCenter);
+	btn_layout->addWidget(btnreset,Qt::AlignCenter);
 	left_main_layout->addLayout(display_layout);
 	left_main_layout->addLayout(btn_layout);
 // 	left_main_layout->addLayout(error_layout);
@@ -256,8 +263,7 @@ superViewer::initialize()
   
   //Connect the save button;
   connect (btnsave,  SIGNAL (clicked ()), this, SLOT (saveButtonPressed()));
-	
-
+  connect (btnreset,  SIGNAL (clicked ()), this, SLOT (resetButtonPressed()));
 }
 
 
@@ -302,6 +308,23 @@ superViewer::saveButtonPressed()
   std::cout<<"save done!"<<std::endl;
   std::string filepath = "./super_result.ply";
   super_->saveObject(filepath);
+}
+
+void 
+superViewer::resetButtonPressed()
+{
+  std::cout<<"reset button pressed!"<<std::endl;
+  finaltrans = Eigen::Matrix4f::Identity();
+  //viewer->removeCoordinateSystem("left");
+  viewer->updatePointCloud(super_->getrefCloud(),"reference_cloud");
+  viewer->updatePointCloud(super_->getdataCloud(),"registered_cloud");
+  
+  std::stringstream r;
+  r << finaltrans;
+  viewer->updateText(r.str(),0,0,"show_result");
+  qvtkWidget->update();
+  
+  
 }
 void
 superViewer::RGBsliderReleased ()

@@ -10,6 +10,8 @@ ICPViewer::ICPViewer(QWidget *parent):
   datapath  = "/home/ubuntu/lyc2017/pcp/icptest/models/bunny_data.obj";
   icp = icprefine::GetInstance();
   //icp->init_icp(modelpath,datapath);
+  distance = 10;
+  npoints = 200;
   is_viewer_initiate = false;
   createMainWidget();
 
@@ -79,9 +81,9 @@ ICPViewer::createSliders()
 {
         hSlider_distance = new QSlider(panelWidget);
 	hSlider_distance->setFixedSize(QSize(160,30));
-        hSlider_distance->setMaximum(20);
+        hSlider_distance->setMaximum(100);
 	hSlider_distance->setMinimum(1);
-        hSlider_distance->setValue(4);
+        hSlider_distance->setValue(10);
         hSlider_distance->setOrientation(Qt::Horizontal);
 	
 	hSlider_npoints = new QSlider(panelWidget);
@@ -102,13 +104,13 @@ ICPViewer::createSliders()
         lcdNumber_distance->setDigitCount(3);
 	lcdNumber_distance->setFixedSize(QSize(80,40));
         lcdNumber_distance->setSegmentStyle(QLCDNumber::Flat);
-        lcdNumber_distance->setProperty("intValue", QVariant(4));
+        lcdNumber_distance->setProperty("intValue", QVariant(10));
         
 	lcdNumber_npoints = new QLCDNumber(panelWidget);
         lcdNumber_npoints->setFixedSize(QSize(80,40));;
 	lcdNumber_npoints->setDigitCount(3);
         lcdNumber_npoints->setSegmentStyle(QLCDNumber::Flat);
-        lcdNumber_npoints->setProperty("intValue", QVariant(128));
+        lcdNumber_npoints->setProperty("intValue", QVariant(200));
 	
 	lcdNumber_pcsize = new QLCDNumber(panelWidget);
         lcdNumber_pcsize->setFixedSize(QSize(80,40));;
@@ -135,7 +137,7 @@ ICPViewer::createSliders()
 	
         label_npoits = new QLabel(panelWidget);
         label_npoits->setFixedSize(QSize(191, 31));
-	label_npoits->setText(tr("N_Points"));
+	label_npoits->setText(tr("Max_Iter"));
 	label_npoits->setAlignment(Qt::AlignHCenter);
 	label_npoits->setFont(font);
      
@@ -251,7 +253,7 @@ ICPViewer::initialize()
   connect (btnicp,  SIGNAL (clicked ()), this, SLOT (randomButtonPressed ()));
 
   // Connect R,G,B sliders and their functions
-  connect (hSlider_distance, SIGNAL (valueChanged (int)), this, SLOT (distance_ValueChanged(double)));
+  connect (hSlider_distance, SIGNAL (valueChanged (int)), this, SLOT (distance_ValueChanged(int)));
   connect (hSlider_npoints, SIGNAL (valueChanged (int)), this, SLOT (npoints_ValueChanged(int)));
   connect (hSlider_pcsize, SIGNAL (valueChanged (int)), this, SLOT (pcsize_ValueChanged(int)));
   connect (hSlider_distance, SIGNAL (sliderReleased ()), this, SLOT (RGBsliderReleased ()));
@@ -302,16 +304,16 @@ void ICPViewer::saveButtonPressed()
   std::string filepath = "./result.ply";
   icp->saveObject(filepath);
 }
-void ICPViewer::distance_ValueChanged(double value)
+void ICPViewer::distance_ValueChanged(int value)
 {
   distance = value;
-  printf ("distanceSliderValueChanged: [%d]\n", distance);
+  printf ("distanceValueChanged: [%d]\n", distance);
 }
 
 void ICPViewer::npoints_ValueChanged(int value)
 {
   npoints = value;
-  printf ("npointsSliderValueChanged: [%d]\n",npoints);
+  printf ("max_iterValueChanged: [%d]\n",npoints);
 }
 void
 ICPViewer::pcsize_ValueChanged (int value)
@@ -329,5 +331,8 @@ ICPViewer::pcsize_ValueChanged (int value)
 void
 ICPViewer::RGBsliderReleased ()
 {
-  qvtkWidget->update ();
+  printf("RGBsliderReleased\n");
+  icp->setDistance(distance);
+  icp->setNiter(npoints);
+  //qvtkWidget->update ();
 }

@@ -97,6 +97,7 @@ PCLViewer::loadpc_slot()
   QStringList new_add_files = QFileDialog::getOpenFileNames(this, tr("Please Select Two objects"), ".", tr("PointCloud(*.ply *.obj)"));
 	if (new_add_files.empty()||new_add_files.size()<2)
 		return false;
+	tmp.clear();
 	tmp = new_add_files;
 	int cur_index = stacked_widget->currentIndex();
 	   if(cur_index == 0)
@@ -114,12 +115,12 @@ PCLViewer::loadpc_slot()
            icpviewer->qvtkWidget->update();
 	}
 	 else
-	{
+	{//TODO reload from ply(without tris,eg:points1) to ply(with tris eg:bunny) would cause crash
+	   
 	   super* super_ = super::GetInstance();
 	   super_->init_super(tmp[0].toStdString(),tmp[1].toStdString());
 	   super_->run_super(super_->getref(),super_->getdata());
-	   std::cout<<"1"<<std::endl;
- 	   superviewer->init_viewer();
+	   superviewer->init_viewer();
 	   superviewer->viewer->updatePointCloud(super_->getResultCloud(),"registered_cloud");
            PCSMatrixT tem = super_->getResults();//run_super(super_->getref(),super_->getResult());
            std::stringstream r;

@@ -6,7 +6,7 @@ set(CMAKE_CXX_COMPILER "g++")
 #set(CMAKE_CXX_COMPILER "clang++")
 
 #debug config
-#set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Debug)
 
 #generate static library config
 # SET(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
@@ -14,8 +14,8 @@ set(CMAKE_CXX_COMPILER "g++")
 # SET(CMAKE_EXE_LINKER_FLAGS "-static")
 
 #debug config
-set(CMAKE_BUILD_TYPE Release)
-set(CMAKE_CXX_FLAGS "-std=c++11 -march=native -O3 ")
+#set(CMAKE_BUILD_TYPE Release)
+#set(CMAKE_CXX_FLAGS "-std=c++11 -march=native -O3 ")
 
 #DIR config
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)

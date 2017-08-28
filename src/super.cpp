@@ -26,16 +26,19 @@ void super::P3D2PCL(vector<Point3D>& set, PointCloud& pc)
   pc->height = 1;
   pc->is_dense = true;
   if(set[0].hasColor()) //TODO:the color should be set to 0;
-   for(size_t i = 0;i<set.size();i++)
+  {
+    std::cout<<"P3D2PCL:hasColor"<<std::endl;
+    for(size_t i = 0;i<set.size();i++)
     {
       pc->points[i].x = set[i].x();
       pc->points[i].y = set[i].y();
       pc->points[i].z = set[i].z();
-   //    pc->points[i].r = set[i].rgb().coeffRef(0);
-//       pc->points[i].g = set[i].rgb().coeffRef(1);
-//       pc->points[i].b = set[i].rgb().coeffRef(2);
+       pc->points[i].r = set[i].rgb()[0];
+       pc->points[i].g = set[i].rgb()[1];
+       pc->points[i].b = set[i].rgb()[2];
 //       std::cout<<i<<std::endl;
     }
+  }
   else 
     for(size_t i=0;i<set.size();i++)
     {
@@ -226,7 +229,7 @@ vector<Point3D>& super:: getdata()
 }
 PointCloud super::getResultCloud()
 {
-  P3D2PCL(set1,resultCloud);
+  P3D2PCL(set3,resultCloud);
   return resultCloud;
 }
 vector<Point3D>& super:: getResult()
@@ -268,6 +271,7 @@ void super::transform(vector<Point3D>& set1, vector<Point3D>& set2,
      mat3<<255,255,255;
      mat4.setOnes();
      set2.resize(set1.size());
+     set2 = set1; //copy other attribues other than pos
   for(int i = 0;i<set1.size();i++)
   {
     tem = transform.topLeftCorner<3,3>()*set1[i].pos();
@@ -310,11 +314,15 @@ super::init_viewer(pcl::visualization::PCLVisualizer::Ptr viewer)
   P3D2PCL(set3,resultCloud);
   pcl::visualization::PointCloudColorHandlerCustom<PointT>
   reference_cloud_color_handler(modelCloud, 230, 20, 20); 
-  viewer->addPointCloud(modelCloud, reference_cloud_color_handler,
-                       "reference_cloud",v1);
+//   viewer->addPointCloud(modelCloud, reference_cloud_color_handler,
+//                        "reference_cloud",v1);
+  viewer->addPointCloud(modelCloud,
+                        "reference_cloud",v1);
   pcl::visualization::PointCloudColorHandlerCustom<PointT>
   registered_cloud_color_handler(resultCloud, 20, 230, 20);  // Green
-  viewer->addPointCloud(resultCloud,registered_cloud_color_handler,
+  //viewer->addPointCloud(resultCloud,registered_cloud_color_handler,
+//			"registered_cloud",v1);
+   viewer->addPointCloud(resultCloud,
 			"registered_cloud",v1);
   
   int v2(0);
@@ -326,8 +334,10 @@ super::init_viewer(pcl::visualization::PCLVisualizer::Ptr viewer)
   
   pcl::visualization::PointCloudColorHandlerCustom<PointT>
   source_cloud_color_handler(modelCloud, 230, 20, 20);
+  //viewer->addPointCloud(modelCloud,
+  //                     source_cloud_color_handler, "original_cloud",v2);  
   viewer->addPointCloud(modelCloud,
-                       source_cloud_color_handler, "original_cloud",v2);  
+                        "original_cloud",v2);  
   int v3(0);
   viewer->createViewPort(0.7,0.5,1.0,1.0,v3);
   viewer->addCoordinateSystem(1.0,"cloud2",v3);
@@ -337,17 +347,18 @@ super::init_viewer(pcl::visualization::PCLVisualizer::Ptr viewer)
   P3D2PCL(set2,dataCloud);
   pcl::visualization::PointCloudColorHandlerCustom<PointT>
   current_cloud_color_handler(dataCloud, 20, 230, 20);  // Green
-  viewer->addPointCloud(dataCloud,current_cloud_color_handler,
+  //viewer->addPointCloud(dataCloud,current_cloud_color_handler,
+//			"current_cloud",v3);
+  viewer->addPointCloud(dataCloud,
 			"current_cloud",v3);
-
   viewer->setPointCloudRenderingProperties(
-    pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "current_cloud",v3);  
+    pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "current_cloud",v3);  
   viewer->setPointCloudRenderingProperties(
-    pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "reference_cloud",v2);
+    pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "reference_cloud",v2);
   viewer->setPointCloudRenderingProperties(
-    pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "reference_cloud",v1);
+    pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "reference_cloud",v1);
   viewer->setPointCloudRenderingProperties(
-    pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "registered_cloud",v1);
+    pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "registered_cloud",v1);
   
   std::stringstream r;
   r << super_result;
@@ -437,10 +448,10 @@ void super::saveObject(std::string filepath)
       std::cout << "Exporting Registered geometry to "
                 << output.c_str()
                 << "..." << std::flush;
-      std::cout<< "size of sets2 is :"<<set2.size()<<std::endl;
+      std::cout<< "size of sets3 is :"<<set3.size()<<std::endl;
 
       iomananger.WriteObject((char *)output.c_str(),
-                             set2,
+                             set3,
                              tex_coords2,
                              normals2,
                              tris2,

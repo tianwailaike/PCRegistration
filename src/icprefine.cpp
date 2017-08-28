@@ -186,6 +186,16 @@ void icprefine::setParams(icp::IcpParameters icp_param)
   icp_param_sim3 = icp_param;
    std::cout << "ICP Parameters Sim3:\n" << icp_param_sim3;
 }
+void icprefine::setDistance(double dist_)
+{
+   icp_param_sim3.max_correspondance_distance = dist_*10e-4;
+   std::cout << "ICP Parameters Sims-max_correspondance_distance:\n" << dist_;
+}
+void icprefine::setNiter(int max_iter_)
+{
+  icp_param_sim3.max_iter = max_iter_;
+   std::cout << "ICP Parameters Sim3-max_iter\n" <<max_iter_;
+}
 PointCloud icprefine:: getref()
 {
   return modelCloud;
@@ -223,6 +233,7 @@ icp::IcpResults icprefine::run_icp(PointCloud modelCloud,PointCloud dataCloud)
 #ifdef P2PC
   //icp::IcpPointToPointHubertSim3 icp_algorithm;
   icp::IcpPointToPointHubertXYZRGBSim3 icp_algorithm;  //for xyzrgb
+  std::cout<<icp_param_sim3<<std::endl;
   icp_algorithm.setParameters(icp_param_sim3);
   icp_algorithm.setInputCurrent(dataCloud);
   icp_algorithm.setInputReference(modelCloud);
@@ -447,11 +458,15 @@ void icprefine::init_viewer(pcl::visualization::PCLVisualizer::Ptr viewer)
   
   pcl::visualization::PointCloudColorHandlerCustom<PointT>
   reference_cloud_color_handler(modelCloud, 230, 20, 20); 
-  viewer->addPointCloud(modelCloud, reference_cloud_color_handler,
+  //viewer->addPointCloud(modelCloud, reference_cloud_color_handler,
+    //                   "reference_cloud",v1);
+  viewer->addPointCloud(modelCloud,
                        "reference_cloud",v1);
   pcl::visualization::PointCloudColorHandlerCustom<PointT>
   registered_cloud_color_handler(resultCloud, 20, 230, 20);  // Green
-  viewer->addPointCloud(resultCloud,registered_cloud_color_handler,
+//   viewer->addPointCloud(resultCloud,registered_cloud_color_handler,
+// 			"registered_cloud",v1);
+  viewer->addPointCloud(resultCloud,
 			"registered_cloud",v1);
   
   int v2(0);
@@ -463,8 +478,10 @@ void icprefine::init_viewer(pcl::visualization::PCLVisualizer::Ptr viewer)
   
   pcl::visualization::PointCloudColorHandlerCustom<PointT>
   source_cloud_color_handler(modelCloud, 230, 20, 20);
-  viewer->addPointCloud(modelCloud,
-                       source_cloud_color_handler, "original_cloud",v2);  
+/*  viewer->addPointCloud(modelCloud,
+                       source_cloud_color_handler, "original_cloud",v2); */ 
+    viewer->addPointCloud(modelCloud,
+                        "original_cloud",v2);  
   int v3(0);
   viewer->createViewPort(0.5,0.5,1.0,1.0,v3);
   viewer->addCoordinateSystem(1.0,"cloud2",v3);
@@ -473,7 +490,9 @@ void icprefine::init_viewer(pcl::visualization::PCLVisualizer::Ptr viewer)
 
   pcl::visualization::PointCloudColorHandlerCustom<PointT>
   current_cloud_color_handler(dataCloud, 20, 230, 20);  // Green
-  viewer->addPointCloud(dataCloud,current_cloud_color_handler,
+//   viewer->addPointCloud(dataCloud,current_cloud_color_handler,
+// 			"current_cloud",v3);
+  viewer->addPointCloud(dataCloud,
 			"current_cloud",v3);
 
   viewer->setPointCloudRenderingProperties(

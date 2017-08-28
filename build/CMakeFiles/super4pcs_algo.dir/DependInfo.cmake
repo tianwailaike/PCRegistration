@@ -14,6 +14,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
+  "DEBUG"
   "DISABLE_PCAP"
   "DISABLE_PNG"
   "EIGEN_USE_NEW_STDVECTOR"
