@@ -188,7 +188,7 @@ void icprefine::setParams(icp::IcpParameters icp_param)
 }
 void icprefine::setDistance(double dist_)
 {
-   icp_param_sim3.max_correspondance_distance = dist_*10e-4;
+   icp_param_sim3.max_correspondance_distance = dist_*10e-5;
    std::cout << "ICP Parameters Sims-max_correspondance_distance:\n" << dist_;
 }
 void icprefine::setNiter(int max_iter_)

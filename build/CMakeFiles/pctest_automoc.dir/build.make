@@ -55,7 +55,7 @@ include CMakeFiles/pctest_automoc.dir/progress.make
 
 CMakeFiles/pctest_automoc:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic moc for target pctest"
-	/usr/bin/cmake -E cmake_autogen /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/pctest_automoc.dir/ Debug
+	/usr/bin/cmake -E cmake_autogen /home/ubuntu/lyc2017/pcp/PCRegistration/build/CMakeFiles/pctest_automoc.dir/ Release
 
 pctest_automoc: CMakeFiles/pctest_automoc
 pctest_automoc: CMakeFiles/pctest_automoc.dir/build.make
